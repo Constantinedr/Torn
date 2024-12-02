@@ -9,9 +9,9 @@ public class player : MonoBehaviour
     private RaycastHit2D hit;
 
     // Dash-related variables
-    public float dashDistance = 0.65f;   // Maximum dash distance
+    public float dashDistance = 0.5f;   // Maximum dash distance
     public float dashDuration = 0.2f; // Duration of the dash
-    public float dashCooldown = 0.3f;   // Time before you can dash again
+    public float dashCooldown = 0.2f;   // Time before you can dash again
 
     private float dashTime;           // Timer for the dash duration
     private float cooldownTimer;      // Timer for the cooldown
