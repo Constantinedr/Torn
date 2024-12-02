@@ -9,16 +9,16 @@ public class player : MonoBehaviour
     private RaycastHit2D hit;
 
     // Dash-related variables
-    public float dashDistance = 0.5f;   // Maximum dash distance
-    public float dashDuration = 0.2f; // Duration of the dash
-    public float dashCooldown = 0.2f;   // Time before you can dash again
+    private float dashDistance = 0.5f;   // Maximum dash distance
+    private float dashDuration = 0.2f; // Duration of the dash
+    private float dashCooldown = 0.1f;   // Time before you can dash again
 
     private float dashTime;           // Timer for the dash duration
-    private float cooldownTimer;      // Timer for the cooldown
-    private bool isDashing = false;   // Whether the player is currently dashing
-    private Vector2 dashDirection;    // Direction of the dash
-    private Vector2 originalPosition; // Starting position for the dash
-    private Vector2 targetPosition;   // Target position for the dash
+    private float cooldownTimer;      
+    private bool isDashing = false;  
+    private Vector2 dashDirection;   
+    private Vector2 originalPosition; 
+    private Vector2 targetPosition;  
 
     private void Start()
     {
