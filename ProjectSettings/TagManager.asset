@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FIGHTER
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - UI
   - blocking
   - actor
-  - 
+  - weapon
   - 
   - 
   - 
@@ -49,4 +50,7 @@ TagManager:
     locked: 0
   - name: YIPEE
     uniqueID: 2427569719
+    locked: 0
+  - name: weapon
+    uniqueID: 820611145
     locked: 0
