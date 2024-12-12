@@ -40,11 +40,7 @@ public class Weapon : Collidable
             }
         }
     }
-    private ovveride void OnTriggerEnter2D(Collider2D coll){
-            
-
-
-    }
+   
     private void Swing()
     {
         Debug.Log("Swing");
