@@ -12,6 +12,13 @@ public class FloatingTextManager : MonoBehaviour
     private List<FloatingText> floatingTexts = new List<FloatingText>();
 
 
+    private void Update()
+    {
+        foreach (FloatingText txt in floatingTexts)
+            txt.UpdateFloatingText();
+
+
+    }
     public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         FloatingText floatingText = GetFloatingText();

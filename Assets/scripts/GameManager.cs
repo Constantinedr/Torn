@@ -6,6 +6,22 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+ 
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    // Other GameManager methods...
+
+
 
     // Persistent player data
     public int pesos;
@@ -15,19 +31,19 @@ public class GameManager : MonoBehaviour
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
     public List<int> weaponPrices;
-    public List<int> xpTable;
+    public List<int> xpTable;   
 
-    private void Awake()
-    {
-        // Ensure only one instance exists
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+
+    public FloatingTextManager floatingTextManager;
+
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration){
+        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+
+
+
     }
+
+ 
 
     private void OnEnable()
     {
@@ -49,7 +65,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("Game Saved");
     }
-
+    
     public void LoadState(Scene scene, LoadSceneMode mode)
     {
         if (PlayerPrefs.HasKey("SaveState"))

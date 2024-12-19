@@ -22,6 +22,9 @@ public class Fighter : MonoBehaviour
             LastImmune = Time.time;
             hitpoint -= dmg.damageAmount;
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
+
+            GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position,Vector3.up*40, 1f);
+
             if (hitpoint <=0){
                 hitpoint = 0;
                 Death ();
@@ -29,7 +32,7 @@ public class Fighter : MonoBehaviour
     }
 }    
     protected virtual void Death(){
-
+        Destroy(gameObject);
 
     }
 }

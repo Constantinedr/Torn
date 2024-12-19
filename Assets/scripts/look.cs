@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class thelooker : MonoBehaviour
 {
     public Transform lookAt;
     public float boundX = 0.15f;

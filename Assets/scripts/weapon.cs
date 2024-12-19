@@ -50,6 +50,7 @@ public class Weapon : Collidable
             origin = transform.position,
             pushForce = pushForce
         };
+       
         coll.SendMessage("ReceiveDamage",dmg);
       }
     }
