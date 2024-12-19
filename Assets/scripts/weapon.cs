@@ -40,7 +40,19 @@ public class Weapon : Collidable
             }
         }
     }
-   
+    protected override void OnCollide(Collider2D coll){ 
+      if (coll.tag == "FIGHTER"){ 
+        if (coll.name == "PLAYER")
+            return;
+            
+        Damage dmg = new Damage{ 
+            damageAmount = damagePoint,
+            origin = transform.position,
+            pushForce = pushForce
+        };
+        coll.SendMessage("ReceiveDamage",dmg);
+      }
+    }
     private void Swing()
     {
         Debug.Log("Swing");

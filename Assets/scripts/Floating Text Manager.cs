@@ -8,13 +8,29 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textContainer;
     public GameObject textPrefab;
 
+
     private List<FloatingText> floatingTexts = new List<FloatingText>();
+
+
+    public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        FloatingText floatingText = GetFloatingText();
+
+        floatingText.txt.text = msg;
+        floatingText.txt.fontSize = fontSize;
+        floatingText.txt.color = color;
+        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(position);
+        floatingText.motion = motion;
+        floatingText.duration = duration;
+        floatingText.Show();
+
+    }
 
     private FloatingText GetFloatingText()
     {
         // Find an inactive floating text
         FloatingText txt = floatingTexts.Find(t => !t.active);
-        
+
         if (txt == null)
         {
             // Create a new FloatingText if none are available
@@ -26,6 +42,8 @@ public class FloatingTextManager : MonoBehaviour
             floatingTexts.Add(txt);
         }
 
+        txt.go.SetActive(true);
+        txt.active = true;
         return txt;
     }
 }
