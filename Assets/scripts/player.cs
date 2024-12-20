@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class player : Mover
 {
-    private BoxCollider2D boxCollider;
-    private Vector3 moveDelta;
-    private RaycastHit2D hit;
 
     // Dash-related variables
     private float dashDistance = 0.43f;   // Maximum dash distance
@@ -20,11 +17,7 @@ public class player : MonoBehaviour
     private Vector2 originalPosition; 
     private Vector2 targetPosition;  
 
-    private void Start()
-    {
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
-
+  
     private void FixedUpdate()
     {
         if (isDashing)

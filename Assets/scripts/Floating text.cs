@@ -40,4 +40,5 @@ public class FloatingText
         // Update position with motion
         go.transform.position += motion * Time.deltaTime;
     }
+    
 }
