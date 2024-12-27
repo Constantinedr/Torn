@@ -12,7 +12,7 @@ public class Weapon : Collidable
 
     private BoxCollider2D weaponCollider; // Reference to the weapon's collider
 
-    private float cooldown = 0.5f;
+    private float cooldown = 0.3f;
     private float lastSwing;
     private Animator anim;
 
@@ -79,7 +79,7 @@ public class Weapon : Collidable
         }
 
         // Disable the collider after a short duration
-        Invoke(nameof(DisableCollider), 0.2f); // Adjust the duration as needed
+        Invoke(nameof(DisableCollider), 0.3f); // Adjust the duration as needed
     }
 
     private void DisableCollider()
