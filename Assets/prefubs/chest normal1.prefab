@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1213181627598911174}
   - component: {fileID: 9192787844895163611}
   - component: {fileID: 5063508636544506446}
-  - component: {fileID: 1987019499271387009}
   m_Layer: 6
   m_Name: chest normal1
   m_TagString: Untagged
@@ -119,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.007981423, y: -0.015962929}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 0.17981458, y: 0.13192585}
   m_EdgeRadius: 0
 --- !u!114 &5063508636544506446
 MonoBehaviour:
@@ -160,30 +159,3 @@ MonoBehaviour:
     maxNormalAngle: 0
   emptyChest: {fileID: 1234557544, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   pesosAmount: 5
---- !u!50 &1987019499271387009
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4554858747838946642}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

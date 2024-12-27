@@ -832,7 +832,7 @@ TextureImporter:
         width: 12
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -840,6 +840,174 @@ TextureImporter:
       bones: []
       spriteID: 1152c63857368b04f9161eb78fa60daa
       internalID: -1504182317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_4
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 216
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39d8c44be2e15aa4f8a0773da06d4d37
+      internalID: 1733699976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_5
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 216
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 664d2f3b70a1367498d6d5f05f849e5e
+      internalID: 1993102745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_6
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 216
+        width: 13
+        height: 21
+      alignment: 9
+      pivot: {x: 0.48048988, y: 0.48792014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f9b0fa2cec1924a92b2102f1f15941
+      internalID: -1421477082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_7
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 217
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5815dc794f5aa364b902021e20e379b7
+      internalID: -410769120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_8
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 214
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757c1e4009f51304591a24fecadf49ee
+      internalID: -639139954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_9
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 214
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90390e07df48bc9419fa617034578059
+      internalID: 2076359782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_10
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 210
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1a503a59d0203e4aa511375922b03e9
+      internalID: 1546022902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui chest
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 79
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5428136cd7d698c4295d6f66d38bc167
+      internalID: 519219579
       vertices: []
       indices: 
       edges: []
@@ -857,8 +1025,15 @@ TextureImporter:
     nameFileIdTable:
       3_0: -1747290331
       3_1: -836601902
+      3_10: 1546022902
       3_2: -1323788307
       3_3: -915881992
+      3_4: 1733699976
+      3_5: 1993102745
+      3_6: -1421477082
+      3_7: -410769120
+      3_8: -639139954
+      3_9: 2076359782
       DEMON: -1504182317
       PLAYER_1: -317372845
       chest normal 2: -1199390367
@@ -879,6 +1054,7 @@ TextureImporter:
       fountain1: 1455965185
       fountain2: -1267791365
       fountain3: -1592079122
+      ui chest: 519219579
       wall1: -1510444517
       wall2: 630956752
       wall3: 1932704656

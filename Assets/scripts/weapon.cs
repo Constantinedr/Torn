@@ -10,27 +10,37 @@ public class Weapon : Collidable
     public int weaponLevel = 0;
     private SpriteRenderer spriteRenderer;
 
-
-    private BoxCollider2D weaponCollider; // Renamed field to avoid conflict
+    private BoxCollider2D weaponCollider; // Reference to the weapon's collider
 
     private float cooldown = 0.5f;
     private float lastSwing;
+    private Animator anim;
 
     protected override void Start()
     {
+        base.Start();
+
         weaponCollider = GetComponent<BoxCollider2D>();
         if (weaponCollider == null)
         {
             Debug.LogError($"BoxCollider2D is missing on {gameObject.name}. Please attach one.");
         }
-        base.Start();
+
+        // Initially disable the collider
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false;
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     protected override void Update()
     {
         base.Update();
 
+        // Trigger swing on left mouse button
         if (Input.GetMouseButton(0)) // Left mouse button
         {
             if (Time.time - lastSwing > cooldown)
@@ -40,22 +50,43 @@ public class Weapon : Collidable
             }
         }
     }
-    protected override void OnCollide(Collider2D coll){ 
-      if (coll.tag == "FIGHTER"){ 
-        if (coll.name == "PLAYER")
-            return;
-            
-        Damage dmg = new Damage{ 
-            damageAmount = damagePoint,
-            origin = transform.position,
-            pushForce = pushForce
-        };
-       
-        coll.SendMessage("ReceiveDamage",dmg);
-      }
+
+    protected override void OnCollide(Collider2D coll)
+    {
+        if (coll.CompareTag("FIGHTER"))
+        {
+            if (coll.name == "PLAYER")
+                return;
+
+            Damage dmg = new Damage
+            {
+                damageAmount = damagePoint,
+                origin = transform.position,
+                pushForce = pushForce
+            };
+
+            coll.SendMessage("ReceiveDamage", dmg);
+        }
     }
+
     private void Swing()
     {
-        Debug.Log("Swing");
+        anim.SetTrigger("Swing");
+        // Enable the collider during the swing
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = true;
+        }
+
+        // Disable the collider after a short duration
+        Invoke(nameof(DisableCollider), 0.2f); // Adjust the duration as needed
+    }
+
+    private void DisableCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false;
+        }
     }
 }

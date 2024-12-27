@@ -9,8 +9,8 @@ public abstract class Mover : Fighter
     protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
-    protected float ySpeed = 0.75f;
-    protected float xSpeed = 1.0f;
+    public float ySpeed = 0.75f;
+    public float xSpeed = 1.0f;
  
 
     protected virtual void Start()
@@ -28,6 +28,11 @@ public abstract class Mover : Fighter
             transform.localScale = new Vector3(1, 1, 1);
         else if (moveDelta.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
+
+        moveDelta +=pushDirection;
+
+        //reduce push
+        pushDirection = Vector3.Lerp (pushDirection,Vector3.zero,pushRecoverSpeed);
 
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("actor", "blocking"));
         if (hit.collider == null)
