@@ -10,7 +10,7 @@ public class Fighter : MonoBehaviour
 
 
     protected float immuneTime = 1.0f;
-    private float LastImmune;
+    protected float LastImmune;
 
     protected Vector3 pushDirection;
 
