@@ -33,6 +33,11 @@ public class Weapon : Collidable
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError($"SpriteRenderer is missing on {gameObject.name}. Please attach one.");
+        }
+
         anim = GetComponent<Animator>();
     }
 
@@ -72,21 +77,30 @@ public class Weapon : Collidable
     private void Swing()
     {
         anim.SetTrigger("Swing");
-        // Enable the collider during the swing
+
+        // Enable the collider and sprite during the swing
         if (weaponCollider != null)
         {
             weaponCollider.enabled = true;
         }
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+        }
 
-        // Disable the collider after a short duration
-        Invoke(nameof(DisableCollider), 0.3f); // Adjust the duration as needed
+        // Disable the collider and sprite after a short duration
+        Invoke(nameof(EndSwing), 0.3f); // Adjust the duration as needed
     }
 
-    private void DisableCollider()
+    private void EndSwing()
     {
         if (weaponCollider != null)
         {
             weaponCollider.enabled = false;
+        }
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = false;
         }
     }
 }

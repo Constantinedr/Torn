@@ -4,32 +4,57 @@ using UnityEngine;
 
 public class Player : Mover
 {
-
+    private Animator anim;
     private HeartManager heartManager;
-    [SerializeField] private float speedBuffMultiplier = 1.5f; // How much faster the player moves during the buff
+    private float speedBuffMultiplier = 1.5f;
+    private float speedReductionMultiplier = 0.5f; // Reduction multiplier for slower movement
     private bool isSpeedBuffActive = false;
+    private bool isSpeedReductionActive = false;
+
+    private int lastHitpoint; // Store previous HP for change detection
 
     protected override void Start()
     {
-        hitpoint= maxHitpoint;
+        anim = GetComponent<Animator>(); // Ensure this is correct
+        hitpoint = maxHitpoint;
+        lastHitpoint = hitpoint;
 
         heartManager = FindObjectOfType<HeartManager>();
-        heartManager.InitializeHearts(maxHitpoint);
-        heartManager.UpdateHearts(hitpoint);
+        if (heartManager != null)
+        {
+            heartManager.InitializeHearts(maxHitpoint);
+            heartManager.UpdateHearts(hitpoint);
+        }
+
         base.Start();
     }
 
     private void FixedUpdate()
     {
-        
-        
-        heartManager.UpdateHearts(hitpoint);
+        // Check for HP changes
+        if (hitpoint != lastHitpoint)
+        {
+            OnHPChanged();
+            lastHitpoint = hitpoint; // Update lastHitpoint
+        }
+
+        heartManager?.UpdateHearts(hitpoint);
         HandleMovement();
     }
 
     private void HandleMovement()
     {
-        // Check for speed buff input
+        // Handle speed reduction when right mouse button is held
+        if (Input.GetMouseButton(1)) // Right mouse button
+        {
+            ActivateSpeedReduction();
+        }
+        else
+        {
+            DeactivateSpeedReduction();
+        }
+
+        // Handle speed buff when space key is held
         if (Input.GetKey(KeyCode.Space))
         {
             ActivateSpeedBuff();
@@ -50,11 +75,21 @@ public class Player : Mover
 
     private void ActivateSpeedBuff()
     {
-        if (!isSpeedBuffActive)
+        if (!isSpeedBuffActive && !isSpeedReductionActive)
         {
             xSpeed *= speedBuffMultiplier;
             ySpeed *= speedBuffMultiplier;
             isSpeedBuffActive = true;
+        }
+    }
+
+    private void ActivateSpeedReduction()
+    {
+        if (!isSpeedReductionActive && !isSpeedBuffActive)
+        {
+            xSpeed *= speedReductionMultiplier;
+            ySpeed *= speedReductionMultiplier;
+            isSpeedReductionActive = true;
         }
     }
 
@@ -68,37 +103,57 @@ public class Player : Mover
         }
     }
 
-public void Heal(float amount)
-{
-    if (hitpoint<maxHitpoint){
-    int healAmount = Mathf.RoundToInt(amount); // Convert float to int
-    hitpoint += healAmount;
-    hitpoint = Mathf.Clamp(hitpoint, 0, maxHitpoint); // Ensure hitpoint stays within bounds
-
-    GameManager.instance.ShowText(healAmount.ToString(), 25, Color.green, transform.position, Vector3.up * 40, 1f);
-
-    heartManager.UpdateHearts(hitpoint);
-    }
-}
-
-protected override void ReceiveDamage(Damage dmg)
-{
-    if (Time.time - LastImmune > immuneTime)
+    private void DeactivateSpeedReduction()
     {
-        LastImmune = Time.time;
-        hitpoint -= dmg.damageAmount;
-        pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-
-        // Removed the text display when the player takes damage
-        // GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.up * 40, 1f);
-
-        if (hitpoint <= 0)
+        if (isSpeedReductionActive)
         {
-            hitpoint = 0;
-            Death();
+            xSpeed /= speedReductionMultiplier;
+            ySpeed /= speedReductionMultiplier;
+            isSpeedReductionActive = false;
         }
     }
-}
-  
-    
+
+    public void Heal(float amount)
+    {
+        if (hitpoint < maxHitpoint)
+        {
+            int healAmount = Mathf.RoundToInt(amount); // Convert float to int
+            hitpoint += healAmount;
+            hitpoint = Mathf.Clamp(hitpoint, 0, maxHitpoint); // Ensure hitpoint stays within bounds
+
+            GameManager.instance.ShowText(healAmount.ToString(), 25, Color.green, transform.position, Vector3.up * 40, 1f);
+
+            heartManager?.UpdateHearts(hitpoint);
+        }
+    }
+
+    protected override void ReceiveDamage(Damage dmg)
+    {
+        if (Time.time - LastImmune > immuneTime)
+        {
+            LastImmune = Time.time;
+            hitpoint -= dmg.damageAmount;
+            pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
+
+            if (hitpoint <= 0)
+            {
+                hitpoint = 0;
+                Death();
+            }
+        }
+    }
+
+    private void OnHPChanged()
+    {
+        if (hitpoint > lastHitpoint)
+        {
+            // HP increased
+            anim.SetTrigger("healler");
+        }
+        else if (hitpoint < lastHitpoint)
+        {
+            // HP decreased
+            anim.SetTrigger("rel");
+        }
+    }
 }
