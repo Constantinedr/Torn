@@ -23,6 +23,8 @@ public class Enemy : Mover
     private BoxCollider2D hitbox;
     private Collider2D[] hits = new Collider2D[10];
 
+    private Animator anim; // Reference to Animator
+
     protected override void Start()
     {
         base.Start();
@@ -33,14 +35,45 @@ public class Enemy : Mover
         // Set chase speeds based on initial speed values
         chaseXSpeed = xSpeed;
         chaseYSpeed = ySpeed;
+
+        anim = GetComponent<Animator>();
+        if (anim == null)
+        {
+            Debug.LogError($"Animator is missing on {gameObject.name}. Please attach one.");
+        }
     }
 
     private void FixedUpdate()
     {
-        // Check if the player is within the chase range
-        if (Vector3.Distance(playerTransform.position, startingPosition) < chaseLength)
+        HandleChasing();
+
+        // Reset collision detection
+        collidingWithPlayer = false;
+
+        // Check for collisions
+        boxCollider.OverlapCollider(filter, hits);
+        for (int i = 0; i < hits.Length; i++)
         {
-            if (Vector3.Distance(playerTransform.position, startingPosition) < triggerLength)
+            if (hits[i] == null)
+                continue;
+
+            if (hits[i].CompareTag("FIGHTER") && hits[i].name == "PLAYER")
+            {
+                collidingWithPlayer = true;
+            }
+
+            // Clear processed hit
+            hits[i] = null;
+        }
+    }
+
+    private void HandleChasing()
+    {
+        float distanceToPlayer = Vector3.Distance(playerTransform.position, startingPosition);
+
+        if (distanceToPlayer < chaseLength)
+        {
+            if (distanceToPlayer < triggerLength)
             {
                 chasing = true;
             }
@@ -61,11 +94,15 @@ public class Enemy : Mover
                     // Stop movement when colliding
                     UpdateMotor(Vector3.zero);
                 }
+
+                // Play walking animation
+                SetAnimationState(true);
             }
             else
             {
                 // Return to starting position
                 UpdateMotor(startingPosition - transform.position);
+                SetAnimationState(false);
             }
         }
         else
@@ -77,25 +114,17 @@ public class Enemy : Mover
             // Reset to default speeds
             xSpeed = defaultXSpeed;
             ySpeed = defaultYSpeed;
+
+            // Stop walking animation
+            SetAnimationState(false);
         }
+    }
 
-        // Reset collision detection
-        collidingWithPlayer = false;
-
-        // Check for collisions
-        boxCollider.OverlapCollider(filter, hits);
-        for (int i = 0; i < hits.Length; i++)
+    private void SetAnimationState(bool isWalking)
+    {
+        if (anim != null)
         {
-            if (hits[i] == null)
-                continue;
-
-            if (hits[i].CompareTag("FIGHTER") && hits[i].name == "PLAYER")
-            {
-                collidingWithPlayer = true;
-            }
-
-            // Clear processed hit
-            hits[i] = null;
+            anim.SetBool("IsWalking", isWalking);
         }
     }
 

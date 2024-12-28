@@ -8,11 +8,17 @@ public class Bow : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private BoxCollider2D weaponCollider; // Reference to the weapon's collider
-
     private Animator anim;
     private bool isPulling = false; // Tracks if the bow is being pulled
 
-    private bool space = false; 
+    private bool space = false;
+
+    // References to the arrow prefab and the firing point
+    public GameObject arrowPrefab; // Arrow prefab to instantiate
+    public Transform firePoint; // Position where the arrow is instantiated
+
+    // Force for the arrow shot
+    public float arrowForce = 10f;
 
     protected void Start()
     {
@@ -38,17 +44,18 @@ public class Bow : MonoBehaviour
     }
 
     protected void Update()
-    {   
+    {
         if (Input.GetKey(KeyCode.Space))
         {
-            space=true;
+            space = true;
         }
-        else 
+        else
         {
-            space=false;
+            space = false;
         }
+
         // Start pulling when right mouse button is held down
-        if (Input.GetMouseButton(1) && space==false ) // Right mouse button
+        if (Input.GetMouseButton(1) && space == false) // Right mouse button
         {
             if (!isPulling)
             {
@@ -96,8 +103,24 @@ public class Bow : MonoBehaviour
             weaponCollider.enabled = false;
         }
 
-        // Optionally disable the sprite after release
-        // If you want the sprite to disappear after firing, uncomment the next line
-        // spriteRenderer.enabled = false;
+        // Instantiate and shoot the arrow
+        ShootArrow();
+    }
+
+    private void ShootArrow()
+    {
+        if (arrowPrefab != null && firePoint != null)
+        {
+            // Instantiate the arrow at the firePoint
+            GameObject arrow = Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
+
+            // Get the Rigidbody2D component of the arrow
+            Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                // Add force to the arrow in the forward direction
+                rb.AddForce(firePoint.right * arrowForce, ForceMode2D.Impulse);
+            }
+        }
     }
 }

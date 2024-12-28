@@ -71,6 +71,23 @@ public class Player : Mover
 
         // Apply movement and handle collisions
         UpdateMotor(moveDelta);
+
+        // Update animation based on movement input
+        UpdateMovementAnimation(x, y);
+    }
+
+    private void UpdateMovementAnimation(float x, float y)
+    {
+        if (x != 0 || y != 0)
+        {
+            // Player is moving
+            anim.SetBool("IsWalking2", true);  // Play "IsWalking2" animation
+        }
+        else
+        {
+            // Player is not moving
+            anim.SetBool("IsWalking2", false); // Stop the walking animation
+        }
     }
 
     private void ActivateSpeedBuff()
