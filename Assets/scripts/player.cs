@@ -27,6 +27,7 @@ public class Player : Mover
         }
 
         base.Start();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void FixedUpdate()

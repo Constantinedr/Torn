@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
             string[] data = PlayerPrefs.GetString("SaveState").Split('|');
             pesos = int.Parse(data[1]);
             experience = int.Parse(data[2]);
+           
+            player.transform.position =GameObject.Find("SPAWN").transform.position;
             Debug.Log("Game Loaded: Pesos = " + pesos + ", Experience = " + experience);
         }
     }

@@ -7,6 +7,9 @@ public class thelooker : MonoBehaviour
     public Transform lookAt;
     public float boundX = 0.15f;
     public float boundY = 0.15f;
+    private void Start(){
+        lookAt = GameObject.Find("PLAYER").transform;
+    }
 
     private void LateUpdate()
     {
