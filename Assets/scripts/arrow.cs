@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class arrow : Collidable
+public class Arrow : Collidable
 {
     public int damagePoint = 1;
     public float pushForce = 2.0f;
@@ -19,13 +19,18 @@ public class arrow : Collidable
         Destroy(gameObject, lifeTime);
     }
 
-        protected override void OnCollide(Collider2D coll)
+    protected override void OnCollide(Collider2D coll)
     {
+        // Ignore collision with the player
         if (coll.CompareTag("FIGHTER"))
         {
             if (coll.name == "PLAYER")
                 return;
 
+            // Destroy the arrow on impact
+            Destroy(gameObject);
+
+            // Apply damage to the target
             Damage dmg = new Damage
             {
                 damageAmount = damagePoint,
@@ -33,7 +38,7 @@ public class arrow : Collidable
                 pushForce = pushForce
             };
 
-            coll.SendMessage("ReceiveDamage", dmg);
+            coll.SendMessage("ReceiveDamage", dmg, SendMessageOptions.DontRequireReceiver);
         }
     }
 }

@@ -23,7 +23,7 @@ public class Enemy : Mover
     private BoxCollider2D hitbox;
     private Collider2D[] hits = new Collider2D[10];
 
-    private Animator anim; // Reference to Animator
+    protected Animator anim; // Made protected for inheritance
 
     protected override void Start()
     {
@@ -120,7 +120,8 @@ public class Enemy : Mover
         }
     }
 
-    private void SetAnimationState(bool isWalking)
+    // Virtual method for setting animation state
+    protected virtual void SetAnimationState(bool isWalking)
     {
         if (anim != null)
         {

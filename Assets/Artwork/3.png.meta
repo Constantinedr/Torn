@@ -1168,7 +1168,7 @@ TextureImporter:
         width: 15
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1189,7 +1189,7 @@ TextureImporter:
         width: 15
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1210,7 +1210,7 @@ TextureImporter:
         width: 14
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1231,7 +1231,7 @@ TextureImporter:
         width: 15
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1239,6 +1239,174 @@ TextureImporter:
       bones: []
       spriteID: a77d9b8aba42b4a40bd2ce31657f5e9d
       internalID: 1769945255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONIDLE1
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 239
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a29042bd6668d1044baea3fd1a40092c
+      internalID: -634600351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONIDLE2
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 239
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde90b9ff4870404db1409c6ce267500
+      internalID: 1221157918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONIDLE3
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 238
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce8134ae977e4124c9f4cb2dede69233
+      internalID: 735608679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONrun1
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 239
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8d434d317caeb245b558c2c71b52e7a
+      internalID: 1370452333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONrun2
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 239
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56cb157052007d24185e77c767f0f746
+      internalID: 2139373639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONIDLE
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 242
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1769712158c45bb48bfacd2e9a12fc66
+      internalID: 808402377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONIDLE4
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 239
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c303af55d78d0774a887cd52fc0a43fb
+      internalID: 1903186692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FASTDEMONIDLE5
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 239
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f17bc04762ff444945c56693dacdb4
+      internalID: -1419144058
       vertices: []
       indices: 
       edges: []
@@ -1271,6 +1439,14 @@ TextureImporter:
       3_8: -639139954
       3_9: 2076359782
       DEMON: -1504182317
+      FASTDEMONIDLE: 808402377
+      FASTDEMONIDLE1: -634600351
+      FASTDEMONIDLE2: 1221157918
+      FASTDEMONIDLE3: 735608679
+      FASTDEMONIDLE4: 1903186692
+      FASTDEMONIDLE5: -1419144058
+      FASTDEMONrun1: 1370452333
+      FASTDEMONrun2: 2139373639
       PLAYER_1: -317372845
       arrow: -127241287
       bow: -397890653

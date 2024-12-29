@@ -10,7 +10,7 @@ public class FloatingTextManager : MonoBehaviour
 
 
     private List<FloatingText> floatingTexts = new List<FloatingText>();
-
+ 
 
     private void Update()
     {

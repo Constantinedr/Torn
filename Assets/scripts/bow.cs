@@ -20,6 +20,10 @@ public class Bow : MonoBehaviour
     // Force for the arrow shot
     public float arrowForce = 10f;
 
+    // Variables for holding time tracking
+    private float pullStartTime = 0f; // When the right mouse button was pressed
+    private float pullThreshold = 0.5f; // Time needed to hold before firing
+
     protected void Start()
     {
         weaponCollider = GetComponent<BoxCollider2D>();
@@ -55,26 +59,21 @@ public class Bow : MonoBehaviour
         }
 
         // Start pulling when right mouse button is held down
-        if (Input.GetMouseButton(1) && space == false) // Right mouse button
+        if (Input.GetMouseButtonDown(1) && space == false) // Right mouse button pressed
         {
-            if (!isPulling)
-            {
-                StartPull();
-            }
+            StartPull();
         }
-        else
+
+        if (Input.GetMouseButtonUp(1)) // Right mouse button released
         {
-            // Release the bow when the right mouse button is released
-            if (isPulling)
-            {
-                ReleaseBow();
-            }
+            ReleaseBow();
         }
     }
 
     private void StartPull()
     {
         isPulling = true;
+        pullStartTime = Time.time; // Record the time the button was pressed
 
         // Play pull animation
         anim.SetTrigger("pull");
@@ -94,6 +93,17 @@ public class Bow : MonoBehaviour
     {
         isPulling = false;
 
+        // Check if the button was held long enough
+        float holdDuration = Time.time - pullStartTime;
+        if (holdDuration >= pullThreshold)
+        {
+            ShootArrow(); // Instantiate and shoot the arrow
+        }
+        else
+        {
+            Debug.Log("Bow release too early, no arrow shot.");
+        }
+
         // Play release animation
         anim.SetTrigger("release");
 
@@ -102,9 +112,6 @@ public class Bow : MonoBehaviour
         {
             weaponCollider.enabled = false;
         }
-
-        // Instantiate and shoot the arrow
-        ShootArrow();
     }
 
     private void ShootArrow()
