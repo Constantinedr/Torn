@@ -5,6 +5,11 @@ using UnityEngine;
 public class Enemy : Mover
 {
     public int xpValue = 1;
+    public int goldValue;
+    public GameObject coinPrefab;
+    public Transform firePoint;
+
+
 
     public float triggerLength = 1f;
     public float chaseLength = 5f;
@@ -133,7 +138,11 @@ public class Enemy : Mover
     {
         // Destroy enemy and grant experience to player
         Destroy(gameObject);
+        for(int i=0; i<=goldValue-1; i++){
+        GameObject gold = Instantiate(coinPrefab, firePoint.position, firePoint.rotation);
+        }
         GameManager.instance.experience += xpValue;
+        
         GameManager.instance.ShowText(
             "+" + xpValue + " XP",
             30,

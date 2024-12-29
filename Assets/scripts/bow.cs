@@ -18,7 +18,7 @@ public class Bow : MonoBehaviour
     public Transform firePoint; // Position where the arrow is instantiated
 
     // Force for the arrow shot
-    public float arrowForce = 10f;
+    public float arrowForce = 3f;
 
     // Variables for holding time tracking
     private float pullStartTime = 0f; // When the right mouse button was pressed
