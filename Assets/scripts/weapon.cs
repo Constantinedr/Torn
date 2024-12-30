@@ -12,7 +12,7 @@ public class Weapon : Collidable
 
     private BoxCollider2D weaponCollider; // Reference to the weapon's collider
 
-    private float cooldown = 0.3f;
+    private float cooldown = 0.5f;
     private float lastSwing;
     private Animator anim;
 
@@ -54,6 +54,7 @@ public class Weapon : Collidable
                 Swing();
             }
         }
+       
     }
 
     protected override void OnCollide(Collider2D coll)
@@ -89,7 +90,7 @@ public class Weapon : Collidable
         }
 
         // Disable the collider and sprite after a short duration
-        Invoke(nameof(EndSwing), 0.3f); // Adjust the duration as needed
+        Invoke(nameof(EndSwing), 0.5f); // Adjust the duration as needed
     }
 
     private void EndSwing()
@@ -102,5 +103,6 @@ public class Weapon : Collidable
         {
             spriteRenderer.enabled = false;
         }
+        anim.SetTrigger("release");
     }
 }

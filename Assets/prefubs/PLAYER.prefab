@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponLevel: 0
-  arrowPrefab: {fileID: 1130625057272171241, guid: b993624238f547f47b129d1bb25d6b69, type: 3}
+  arrowPrefab: {fileID: 8600306089089958028, guid: ad9ecba44e8ff9b4a83c56981d520b59, type: 3}
   firePoint: {fileID: 8273479074356937780}
   arrowForce: 10
 --- !u!61 &9017573896588595563
@@ -455,7 +455,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   damagePoint: 1
-  pushForce: 3
+  pushForce: 2
   weaponLevel: 0
 --- !u!61 &7418297512840141131
 BoxCollider2D:

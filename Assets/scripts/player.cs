@@ -6,8 +6,8 @@ public class Player : Mover
 {
     private Animator anim;
     private HeartManager heartManager;
-    private float speedBuffMultiplier = 1.5f;
-    private float speedReductionMultiplier = 0.5f; // Reduction multiplier for slower movement
+    private float speedBuffMultiplier = 1.2f;
+    private float speedReductionMultiplier = 0.4f; // Reduction multiplier for slower movement
     private bool isSpeedBuffActive = false;
     private bool isSpeedReductionActive = false;
 
@@ -28,6 +28,18 @@ public class Player : Mover
 
         base.Start();
         DontDestroyOnLoad(gameObject);
+
+
+
+        GameObject spawner = GameObject.Find("SPAWN");
+
+        if (spawner != null)
+        {
+            // Teleport this GameObject to the position of the Spawner
+            transform.position = spawner.transform.position;
+            Debug.Log($"{gameObject.name} teleported to Spawner at {spawner.transform.position}");
+        }
+
     }
 
     private void FixedUpdate()
@@ -174,4 +186,7 @@ public class Player : Mover
             anim.SetTrigger("rel");
         }
     }
+
+
 }
+

@@ -215,7 +215,7 @@ MonoBehaviour:
   goldValue: 1
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 8551327467384312636}
-  triggerLength: 0.5
+  triggerLength: 20
   chaseLength: 20
   filter:
     useTriggers: 0

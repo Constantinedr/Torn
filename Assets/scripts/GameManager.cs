@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public static GameManager instance;
- 
 
     private void Awake()
     {
+        // Ensure only one GameManager instance exists
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -20,9 +20,63 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Other GameManager methods...
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TeleportToSpawn();
+    }
+
+    private void TeleportToSpawn()
+    {
+        // Find the "SPAWN" GameObject in the scene
+        var spawn = GameObject.Find("SPAWN");
+
+        if (spawn != null && player != null)
+        {
+            player.transform.position = spawn.transform.position;
+            Debug.Log($"Player teleported to SPAWN at {spawn.transform.position}.");
+        }
+        else
+        {
+            Debug.LogWarning("SPAWN or player is missing!");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        EnsureSinglePlayer();
+    }
+
+    private void EnsureSinglePlayer()
+    {
+        // Find all GameObjects with the tag "Player"
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        // If more than one exists, destroy all but the first one
+        if (players.Length > 1)
+        {
+            Debug.LogWarning("More than one PLAYER found. Destroying duplicates...");
+            for (int i = 1; i < players.Length; i++) // Start from index 1 to preserve the first one
+            {
+                Destroy(players[i]);
+            }
+        }
+
+        // Assign the first PLAYER as the main player reference
+        if (players.Length > 0)
+        {
+            player = players[0];
+        }
+    }
 
     // Persistent player data
     public int pesos;
@@ -32,28 +86,13 @@ public class GameManager : MonoBehaviour
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
     public List<int> weaponPrices;
-    public List<int> xpTable;   
-
+    public List<int> xpTable;
 
     public FloatingTextManager floatingTextManager;
 
-    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration){
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
         floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
-
-
-
-    }
-
- 
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += LoadState;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= LoadState;
     }
 
     public void SaveState()
@@ -66,7 +105,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
         Debug.Log("Game Saved");
     }
-    
+
     public void LoadState(Scene scene, LoadSceneMode mode)
     {
         if (PlayerPrefs.HasKey("SaveState"))
@@ -74,8 +113,6 @@ public class GameManager : MonoBehaviour
             string[] data = PlayerPrefs.GetString("SaveState").Split('|');
             pesos = int.Parse(data[1]);
             experience = int.Parse(data[2]);
-           
-            player.transform.position =GameObject.Find("SPAWN").transform.position;
             Debug.Log("Game Loaded: Pesos = " + pesos + ", Experience = " + experience);
         }
     }
