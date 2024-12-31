@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Mover
 {
     private Animator anim;
+    private bool isAlive = true;
     private HeartManager heartManager;
     private float speedBuffMultiplier = 1.2f;
     private float speedReductionMultiplier = 0.4f; // Reduction multiplier for slower movement
@@ -50,9 +51,11 @@ public class Player : Mover
             OnHPChanged();
             lastHitpoint = hitpoint; // Update lastHitpoint
         }
-
+        if (isAlive){
         heartManager?.UpdateHearts(hitpoint);
+        
         HandleMovement();
+        }
     }
 
     private void HandleMovement()
@@ -186,7 +189,11 @@ public class Player : Mover
             anim.SetTrigger("rel");
         }
     }
-
+    
+    protected override void Death(){
+        isAlive = false;
+        GameManager.instance.deathMenuAnim.SetTrigger("Show");
+    }
 
 }
 

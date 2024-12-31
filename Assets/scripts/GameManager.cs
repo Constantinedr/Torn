@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+
+    public void Respawn(){
+        deathMenuAnim.SetTrigger("Hide");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MAIN");
+    }
+
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         TeleportToSpawn();
@@ -81,6 +88,7 @@ public class GameManager : MonoBehaviour
     // Persistent player data
     public int pesos;
     public int experience;
+    public Animator deathMenuAnim;
 
     // Game data
     public List<Sprite> playerSprites;
