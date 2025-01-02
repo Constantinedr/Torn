@@ -298,6 +298,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: boonwizard
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25484f55f7eb3fa4bbfab791faebd2b7
+      internalID: 1097627085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -318,6 +339,7 @@ TextureImporter:
       6: -1321700725
       7: -996061542
       8: -120629964
+      boonwizard: 1097627085
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

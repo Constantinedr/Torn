@@ -1693,7 +1693,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1714,7 +1714,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1735,7 +1735,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1756,7 +1756,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1764,6 +1764,69 @@ TextureImporter:
       bones: []
       spriteID: e8c17b305e5b3fd40841139daaeca44c
       internalID: -1786842783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: speed potion
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 159
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.53093827, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78318c50c802394a9b898338cfd4116
+      internalID: 970184198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: resistance
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 159
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 748f001f11a8c4640815d05bc608df1e
+      internalID: 691910006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: strength
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 159
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.46984482, y: 0.43968964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38b2edc81b8018c418ee1e24369f3a5e
+      internalID: -1719327376
       vertices: []
       indices: 
       edges: []
@@ -1846,6 +1909,9 @@ TextureImporter:
       lever2: -1577280378
       mimic1: -1561254435
       mimic2: 440994047
+      resistance: 691910006
+      speed potion: 970184198
+      strength: -1719327376
       ui chest: 519219579
       wall1: -1510444517
       wall2: 630956752
