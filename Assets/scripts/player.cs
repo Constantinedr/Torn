@@ -194,6 +194,10 @@ public class Player : Mover
         isAlive = false;
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
     }
-
+    
+    public void HeartSteel(){
+         maxHitpoint+=2;
+         heartManager.InitializeHearts(maxHitpoint);
+    }
 }
 

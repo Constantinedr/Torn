@@ -16,19 +16,20 @@ public class BoonOptionsManager : MonoBehaviour
         public string description;   // Description of the boon
         public UnityEvent buttonAction; // Action to assign to the button
     }
+    
+
+
 
     // List of prefab data for boons
     public List<BoonData> boonPrefabs;
-
-    // References to the abilities in the UI
     public GameObject ability1;
     public GameObject ability2;
     public GameObject ability3;
 
     void Start()
     {
-        // Randomly assign boons to abilities
         AssignRandomBoons();
+        
     }
 
     private void AssignRandomBoons()

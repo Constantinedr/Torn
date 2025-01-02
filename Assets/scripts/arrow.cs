@@ -6,15 +6,15 @@ public class Arrow : Collidable
 {
     public int damagePoint = 1;
     public float pushForce = 2.0f;
+    private Animator anim;
 
-    public int weaponLevel = 0;
-    private Rigidbody2D rb;
+
     public float lifeTime = 5f; // Time before the arrow despawns if not hitting anything
 
     protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
+        anim = GetComponent<Animator>();
+        anim.SetTrigger("Shoot");
         // Destroy the arrow after a certain time
         Destroy(gameObject, lifeTime);
     }
@@ -24,21 +24,22 @@ public class Arrow : Collidable
         // Ignore collision with the player
         if (coll.CompareTag("FIGHTER"))
         {
-            if (coll.name == "PLAYER")
-                return;
+            if (coll.name == "PLAYER"){
+             
 
             // Destroy the arrow on impact
-            Destroy(gameObject);
-
+                Destroy(gameObject);
+                Debug.Log("hit");
             // Apply damage to the target
-            Damage dmg = new Damage
-            {
-                damageAmount = damagePoint,
-                origin = transform.position,
-                pushForce = pushForce
-            };
+                Damage dmg = new Damage
+                {
+                    damageAmount = damagePoint,
+                    origin = transform.position,
+                    pushForce = pushForce
+                };
 
-            coll.SendMessage("ReceiveDamage", dmg, SendMessageOptions.DontRequireReceiver);
+                coll.SendMessage("ReceiveDamage", dmg, SendMessageOptions.DontRequireReceiver);
+                }
         }
     }
 }
