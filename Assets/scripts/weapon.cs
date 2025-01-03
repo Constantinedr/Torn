@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon : Collidable
 {
+
+    private AudioSource WeaponSwing;
     public int damagePoint = 1;
     public float pushForce = 2.0f;
 
@@ -19,7 +21,7 @@ public class Weapon : Collidable
     protected override void Start()
     {
         base.Start();
-
+        WeaponSwing = GetComponent<AudioSource>();
         weaponCollider = GetComponent<BoxCollider2D>();
         if (weaponCollider == null)
         {
@@ -78,7 +80,7 @@ public class Weapon : Collidable
     private void Swing()
     {
         anim.SetTrigger("Swing");
-
+        WeaponSwing.Play();
         // Enable the collider and sprite during the swing
         if (weaponCollider != null)
         {

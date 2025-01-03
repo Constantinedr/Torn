@@ -1041,7 +1041,7 @@ MonoBehaviour:
   - {fileID: -14238188, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   - {fileID: -760124964, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   weaponPrices: 0a0000000f0000001400000019000000
-  xpTable: 0a000000140000001e0000002800000032000000a0860100
+  xpTable: 0a000000140000001e00000028000000320000003c000000
   score: 0
   floatingTextManager: {fileID: 123651027}
 --- !u!4 &255947148
@@ -2823,6 +2823,7 @@ GameObject:
   - component: {fileID: 653234927}
   - component: {fileID: 653234926}
   - component: {fileID: 653234925}
+  - component: {fileID: 653234929}
   m_Layer: 0
   m_Name: weapon_0
   m_TagString: Untagged
@@ -2992,6 +2993,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &653234929
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653234923}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4511d5c31d0cf7549a89fca6a03fdd0e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &728936272
 GameObject:
   m_ObjectHideFlags: 0
@@ -13280,7 +13377,7 @@ MonoBehaviour:
   pushRecoverSpeed: 0.1
   ySpeed: 0.3
   xSpeed: 0.3
-  xpValue: 1000
+  xpValue: 1
   goldValue: 1
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 1572417087}
