@@ -10,7 +10,7 @@ public class Enemy : Mover
     public Transform firePoint;
 
 
-
+    public float scoreValue = 10;
     public float triggerLength = 1f;
     public float chaseLength = 5f;
 
@@ -142,7 +142,7 @@ public class Enemy : Mover
         GameObject gold = Instantiate(coinPrefab, firePoint.position, firePoint.rotation);
         }
         GameManager.instance.experience += xpValue;
-        
+        GameManager.instance.score += scoreValue;
         GameManager.instance.ShowText(
             "+" + xpValue + " XP",
             30,

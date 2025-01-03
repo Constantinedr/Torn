@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Mover
 {
+    public int level;
     private Animator anim;
     private bool isAlive = true;
     private HeartManager heartManager;
