@@ -10,6 +10,11 @@ public class FloatingTextManager : MonoBehaviour
 
 
     private List<FloatingText> floatingTexts = new List<FloatingText>();
+
+
+    public void DestroyObjcect(){
+        Destroy(gameObject);
+    }
  
     private void Start(){
 

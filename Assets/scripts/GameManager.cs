@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
+    public void DestroyObjcect(){
+        Destroy(gameObject);
+    }
 
     public void Respawn(){
         deathMenuAnim.SetTrigger("Hide");
@@ -61,8 +63,9 @@ public class GameManager : MonoBehaviour
     private void FixedUpdate()
     {
         EnsureSinglePlayer();
+        
     }
-
+    
     private void EnsureSinglePlayer()
     {
         // Find all GameObjects with the tag "Player"
@@ -89,8 +92,10 @@ public class GameManager : MonoBehaviour
     public int pesos;
     public int experience;
     public Animator deathMenuAnim;
+    public int PlayerLevel=1;
 
     // Game data
+    public int nextLevelXP;
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
     public List<int> weaponPrices;

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Weapon : Collidable
 {
 
@@ -9,15 +8,28 @@ public class Weapon : Collidable
     public int damagePoint = 1;
     public float pushForce = 2.0f;
 
-    public int weaponLevel = 0;
+    public int weaponLevel = 1;
     private SpriteRenderer spriteRenderer;
 
     private BoxCollider2D weaponCollider; // Reference to the weapon's collider
 
-    private float cooldown = 0.5f;
+    private float cooldown = 0.8f;
     private float lastSwing;
     private Animator anim;
 
+
+        public void Freeze()
+    {
+   
+    anim.enabled = false; // Stop animations
+    this.enabled = false; // Disable the Player script
+    }
+
+    public void Unfreeze()
+    {   
+    anim.enabled = true;
+    this.enabled = true;
+    }
     protected override void Start()
     {
         base.Start();

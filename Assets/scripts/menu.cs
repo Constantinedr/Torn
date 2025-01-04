@@ -10,30 +10,28 @@ public class menu : MonoBehaviour
     public int experience;
     public float score;
     public List<int> MenuXpTable;
-    public GameObject GoldText; 
-    public GameObject ExperienceText; 
-    public GameObject ScoreText; 
-    public GameObject XpTableText; 
+    public List<int> MenuWeaponPrices;
+    public GameObject GoldText;
+    public GameObject ExperienceText;
+    public GameObject ScoreText;
+    public GameObject XpTableText;
+    public GameObject WeaponPricesText;
+    public GameObject levelText;
+    private int Level = 1;
 
     void Start()
     {
         // Find the GameManager instance
         gameManager = GameManager.instance;
-
+        
         // Ensure this menu persists across scenes
         DontDestroyOnLoad(gameObject);
 
         // Initialize gold, experience, and score
         if (gameManager != null)
         {
-            MenuXpTable = gameManager.xpTable;
-            score = gameManager.score;
-            gold = gameManager.pesos;
-            experience = gameManager.experience;
-            UpdateGoldText();
-            UpdateExperienceText();
-            UpdateScoreText();
-            UpdateXpTable();
+            UpdateGoldAndExperience();
+            UpdateWeaponPrices();
         }
         else
         {
@@ -45,66 +43,39 @@ public class menu : MonoBehaviour
     {
         // Update gold, experience, and score from GameManager
         if (gameManager != null)
-        {   
+        {
+            MenuWeaponPrices = gameManager.weaponPrices;
             MenuXpTable = gameManager.xpTable;
             gold = gameManager.pesos;
             experience = gameManager.experience;
             score = gameManager.score;
+
             UpdateGoldText();
             UpdateExperienceText();
             UpdateScoreText();
             UpdateXpTable();
+            
+            LevelUP();
         }
     }
 
     private void UpdateGoldText()
     {
-        if (GoldText != null)
-        {
-            var textComponent = GoldText.GetComponent<TextMeshProUGUI>();
-            if (textComponent != null)
-            {
-                textComponent.text = $"{gold}";
-            }
-            else
-            {
-                Debug.LogWarning("GoldText does not have a TextMeshProUGUI component!");
-            }
-        }
+        UpdateText(GoldText, $"{gold}");
     }
 
     private void UpdateExperienceText()
     {
-        if (ExperienceText != null)
-        {
-            var textComponent = ExperienceText.GetComponent<TextMeshProUGUI>();
-            if (textComponent != null)
-            {
-                textComponent.text = $"{experience}";
-            }
-            else
-            {
-                Debug.LogWarning("ExperienceText does not have a TextMeshProUGUI component!");
-            }
-        }
+        UpdateText(ExperienceText, $"{experience}");
     }
 
     private void UpdateScoreText()
     {
-        if (ScoreText != null)
-        {
-            var textComponent = ScoreText.GetComponent<TextMeshProUGUI>();
-            if (textComponent != null)
-            {
-                textComponent.text = $"{score:F1}"; // Display score with 1 decimal place
-            }
-            else
-            {
-                Debug.LogWarning("ScoreText does not have a TextMeshProUGUI component!");
-            }
-        }
+        UpdateText(ScoreText, $"{score:F1}"); // Display score with 1 decimal place
     }
-
+     public void DestroyObjcect(){
+        Destroy(gameObject);
+    }
     private void UpdateXpTable()
     {
         if (XpTableText != null)
@@ -112,22 +83,82 @@ public class menu : MonoBehaviour
             var textComponent = XpTableText.GetComponent<TextMeshProUGUI>();
             if (textComponent != null && MenuXpTable != null && MenuXpTable.Count > 0)
             {
-                int nextLevel = 0;
+                int nextLevelXp = 0;
                 foreach (int xp in MenuXpTable)
                 {
                     if (experience < xp)
                     {
-                        experience-=xp;
-                        nextLevel = xp;
+                        nextLevelXp = xp;
+                       
                         break;
+                    }
+                    else{
+                        Level++;
+                    
                     }
                 }
 
-                textComponent.text = $"{nextLevel} ";
+                // Check if we should level up
+                if (experience >= nextLevelXp && nextLevelXp > 0)
+                {
+                    LevelUP();
+                    
+                }
+
+                textComponent.text = $"{nextLevelXp}";
+                
             }
             else
             {
                 Debug.LogWarning("XpTableText does not have a TextMeshProUGUI component or MenuXpTable is empty!");
+            }
+        }
+    }
+
+
+
+    public void UpdateWeaponPrices()
+    {
+        if (WeaponPricesText != null)
+        {
+            var textComponent = WeaponPricesText.GetComponent<TextMeshProUGUI>();
+            if (textComponent != null && MenuWeaponPrices != null && MenuWeaponPrices.Count > 0)
+            {
+                int nextLevelGold = 0;
+                foreach (int prices in MenuWeaponPrices)
+                {
+                    if (gold < prices)
+                    {
+                        
+                        nextLevelGold = prices;
+                        break;
+                    }
+                }
+                textComponent.text = $"{nextLevelGold}";
+            }
+        
+        }
+    }
+
+    private void LevelUP()
+    {
+        
+        UpdateText(levelText, $"{Level}");
+        Debug.Log("{Level}");
+    }
+
+    private void UpdateText(GameObject textObject, string content)
+    {
+        if (textObject != null)
+        {
+            var textComponent = textObject.GetComponent<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = content;
+            }
+            else
+            {
+                Debug.LogWarning($"{textObject.name} does not have a TextMeshProUGUI component!");
             }
         }
     }

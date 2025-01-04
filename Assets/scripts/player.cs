@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Mover
 {
     public int level;
+    public GameObject DeathMenu;
     private Animator anim;
     private bool isAlive = true;
     private HeartManager heartManager;
@@ -14,6 +15,26 @@ public class Player : Mover
     private bool isSpeedReductionActive = false;
 
     private int lastHitpoint; // Store previous HP for change detection
+
+    public void DestroyObjcect(){
+        Destroy(gameObject);
+    }
+
+    public void Freeze()
+    {
+    // Stop all movement and actions
+    isAlive = false; // Prevent FixedUpdate from handling movement
+    anim.enabled = false; // Stop animations
+    this.enabled = false; // Disable the Player script
+    }
+
+    public void Unfreeze()
+    {   
+    // Restore all movement and actions
+    isAlive = true;
+    anim.enabled = true;
+    this.enabled = true;
+    }
 
     protected override void Start()
     {
@@ -196,8 +217,8 @@ public class Player : Mover
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
     }
     
-    public void HeartSteel(){
-         maxHitpoint+=2;
+    public void HeartSteel(int x){
+         maxHitpoint+=x;
          heartManager.InitializeHearts(maxHitpoint);
     }
 }

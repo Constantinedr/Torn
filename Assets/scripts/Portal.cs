@@ -14,4 +14,8 @@ public class Portal : Collidable
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName); // Fixed UnityEngine capitalization
         }
     }
+    public void tp(){
+        string sceneName = sceneNames[Random.Range(0, sceneNames.Length)]; // Fixed Random.Range
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName); // Fixed UnityEngine capitalization
+    }
 }
