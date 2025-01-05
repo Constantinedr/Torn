@@ -44956,6 +44956,7 @@ GameObject:
   - component: {fileID: 1667911118}
   - component: {fileID: 1667911120}
   - component: {fileID: 1667911119}
+  - component: {fileID: 1667911122}
   m_Layer: 7
   m_Name: PLAYER
   m_TagString: FIGHTER
@@ -44995,10 +44996,14 @@ MonoBehaviour:
   hitpoint: 10
   maxHitpoint: 10
   pushRecoverSpeed: 0.1
+  immuneTime: 2
   ySpeed: 0.75
   xSpeed: 1
   level: 1
   DeathMenu: {fileID: 0}
+  dashSpeed: 1.5
+  dashDuration: 0.3
+  dashCooldown: 0
 --- !u!95 &1667911119
 Animator:
   serializedVersion: 5
@@ -45117,6 +45122,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1667911122
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667911116}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1690327326
 GameObject:
   m_ObjectHideFlags: 0

@@ -209,14 +209,24 @@ MonoBehaviour:
   hitpoint: 5
   maxHitpoint: 5
   pushRecoverSpeed: 0.1
+  immuneTime: 0.2
   ySpeed: 0.4
   xSpeed: 0.4
   xpValue: 1
   goldValue: 1
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 8551327467384312636}
+  scoreValue: 10
   triggerLength: 20
   chaseLength: 20
+  defaultXSpeed: 1
+  defaultYSpeed: 0.75
+  chaseXSpeed: 0
+  chaseYSpeed: 0
+  chasing: 0
+  collidingWithPlayer: 0
+  playerTransform: {fileID: 0}
+  startingPosition: {x: 0, y: 0, z: 0}
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -231,6 +241,18 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  hitbox: {fileID: 0}
+  hits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &5717517133191962771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -267,7 +289,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.12, y: 0.18}
+    oldSize: {x: 0.121212125, y: 0.18181819}
     newSize: {x: 0.12, y: 0.18}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

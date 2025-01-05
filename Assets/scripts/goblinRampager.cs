@@ -8,14 +8,30 @@ public class goblinRampager : Enemy
     private bool isSlowed = false;
     private bool isSpeedReductionActive = false;
 
-   
+    private float normalspeedx;
+    private float normalspeedy;
+    protected override void Start()
+    {
+        base.Start();
+        normalspeedy = chaseYSpeed;
+        normalspeedx = chaseXSpeed;
+    }
     public void Freeze()
     {
-    // Stop all movement and actions
-    
-    anim.enabled = false; // Stop animations
-    this.enabled = false; // Disable the Player script
+        chaseXSpeed = normalspeedx;
+        chaseYSpeed = normalspeedy;
+        chaseXSpeed *= speedReductionMultiplier;
+        chaseYSpeed *= speedReductionMultiplier;
+        isSpeedReductionActive = true;
     }
+    public void UnFreeze()
+    {
+        chaseXSpeed = normalspeedx;
+        chaseYSpeed = normalspeedy;        
+        
+        isSpeedReductionActive = false;
+    }
+    
 
     private void Update()
     {

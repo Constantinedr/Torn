@@ -13,7 +13,7 @@ public class Weapon : Collidable
 
     private BoxCollider2D weaponCollider; // Reference to the weapon's collider
 
-    private float cooldown = 0.8f;
+    private float cooldown = 0.2f;
     private float lastSwing;
     private Animator anim;
 

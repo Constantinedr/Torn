@@ -68,8 +68,10 @@ public class enemyWeapon : Collidable
     {
         if (goblin != null)
         {
-            goblin.SlowDown(false);
+            var freezeScript = character.GetComponent<goblinRampager>();
+            freezeScript.UnFreeze();
         }
+        
     }
 
     public void TriggerSwing()

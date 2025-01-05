@@ -77,6 +77,10 @@ public class Player : Mover
     }
     private void Update(){
         HandleDashInput();
+        if (isDashing){
+        
+        Debug.Log("dash");
+        }
     }
     private void FixedUpdate()
     {
