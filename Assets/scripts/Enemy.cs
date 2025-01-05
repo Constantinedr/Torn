@@ -14,19 +14,19 @@ public class Enemy : Mover
     public float triggerLength = 1f;
     public float chaseLength = 5f;
 
-    private float defaultXSpeed = 1.0f;
-    private float defaultYSpeed = 0.75f;
-    private float chaseXSpeed;
-    private float chaseYSpeed;
+    public float defaultXSpeed = 1.0f;
+    public float defaultYSpeed = 0.75f;
+    public float chaseXSpeed;
+    public float chaseYSpeed;
 
-    private bool chasing;
-    private bool collidingWithPlayer;
-    private Transform playerTransform;
-    private Vector3 startingPosition;
+    public bool chasing;
+    public bool collidingWithPlayer;
+    public Transform playerTransform;
+    public Vector3 startingPosition;
 
     public ContactFilter2D filter;
-    private BoxCollider2D hitbox;
-    private Collider2D[] hits = new Collider2D[10];
+    public BoxCollider2D hitbox;
+    public Collider2D[] hits = new Collider2D[10];
 
     protected Animator anim; // Made protected for inheritance
 

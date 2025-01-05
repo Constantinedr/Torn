@@ -1562,10 +1562,10 @@ TextureImporter:
       name: demonbossspawn
       rect:
         serializedVersion: 2
-        x: 368
-        y: 429
-        width: 17
-        height: 18
+        x: 369
+        y: 430
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1580,13 +1580,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 3_20
+      name: demonbossspawn2
       rect:
         serializedVersion: 2
         x: 385
-        y: 429
-        width: 15
-        height: 18
+        y: 430
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2197,7 +2197,7 @@ TextureImporter:
         width: 14
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2205,6 +2205,69 @@ TextureImporter:
       bones: []
       spriteID: df1248d3f0a9a4045a1d2ed2b3702d8b
       internalID: 1818193156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_28
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 416
+        width: 7
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f986bb70a62829c428013787b8cb9acc
+      internalID: -417647504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demonbossspawn3
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 430
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c906e07931df94ba66c14f87b1e507
+      internalID: 306418579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: demonbossspawn4
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 430
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d0bcc680633184583ee967e5b1cf6c
+      internalID: 922408346
       vertices: []
       indices: 
       edges: []
@@ -2233,7 +2296,6 @@ TextureImporter:
       3_18: 1093701501
       3_19: 1024758839
       3_2: -1323788307
-      3_20: -831372060
       3_21: 1226662186
       3_22: 170043864
       3_23: -717065276
@@ -2241,6 +2303,7 @@ TextureImporter:
       3_25: 64055006
       3_26: -151071190
       3_27: -733203711
+      3_28: -417647504
       3_3: -915881992
       3_4: 1733699976
       3_5: 1993102745
@@ -2268,6 +2331,9 @@ TextureImporter:
       coin3: -498964604
       coin4: 1071131162
       demonbossspawn: 1652612113
+      demonbossspawn2: -831372060
+      demonbossspawn3: 306418579
+      demonbossspawn4: 922408346
       door1: 1744643073
       door2: 2121061639
       door3: 1044756575

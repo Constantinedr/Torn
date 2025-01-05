@@ -13,6 +13,16 @@ public class Player : Mover
     private float speedReductionMultiplier = 0.4f; // Reduction multiplier for slower movement
     private bool isSpeedBuffActive = false;
     private bool isSpeedReductionActive = false;
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+
+    private float dashTime;
+    private float cooldownTime;
+    private bool isDashing;
+    private Vector2 dashDirection;
+
+    private Rigidbody2D rb;
 
     private int lastHitpoint; // Store previous HP for change detection
 
@@ -38,6 +48,7 @@ public class Player : Mover
 
     protected override void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>(); // Ensure this is correct
         hitpoint = maxHitpoint;
         lastHitpoint = hitpoint;
@@ -64,7 +75,9 @@ public class Player : Mover
         }
 
     }
-
+    private void Update(){
+        HandleDashInput();
+    }
     private void FixedUpdate()
     {
         // Check for HP changes
@@ -77,11 +90,43 @@ public class Player : Mover
         heartManager?.UpdateHearts(hitpoint);
         
         HandleMovement();
+        
+        if (isDashing)
+        {
+            PerformDash();
+        }
         }
     }
+    private void HandleDashInput()
+{
+    if (Input.GetKeyDown(KeyCode.Space) && Time.time >= cooldownTime)
+    {
+        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        if (dashDirection != Vector2.zero)
+        {
+            StartDash();
+        }
+    }
+}
+private void StartDash()
+{
+    isDashing = true;
+    dashTime = Time.time + dashDuration;
+    cooldownTime = Time.time + dashCooldown;
+}
+private void PerformDash()
+{
+    rb.velocity = dashDirection * dashSpeed;
 
+    if (Time.time >= dashTime)
+    {
+        isDashing = false;
+        rb.velocity = Vector2.zero; // Stop movement after dash
+    }
+}
     private void HandleMovement()
     {
+        
         // Handle speed reduction when right mouse button is held
         if (Input.GetMouseButton(1)) // Right mouse button
         {
