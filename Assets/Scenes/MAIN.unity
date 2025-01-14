@@ -701,6 +701,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11196304031718732, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7815957
+      objectReference: {fileID: 0}
+    - target: {fileID: 11196304031718732, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2923903
+      objectReference: {fileID: 0}
+    - target: {fileID: 11196304031718732, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.09580776
+      objectReference: {fileID: 0}
+    - target: {fileID: 11196304031718732, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.19753277
+      objectReference: {fileID: 0}
     - target: {fileID: 2150889826921860333, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
       propertyPath: m_Name
       value: demonShooter
@@ -745,7 +761,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8934646735824773087, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4391207
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934646735824773087, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Size.y
+      value: 0.34733728
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934646735824773087, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.023694582
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934646735824773087, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.036458746
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033797487536462560, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+      propertyPath: colliderSource
+      value: 
+      objectReference: {fileID: 1391010770}
+    m_RemovedComponents:
+    - {fileID: 1686129673057097768, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+    - {fileID: 7322820247463318973, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12263,6 +12301,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367549612}
   m_CullTransparentMesh: 1
+--- !u!1 &1391010770 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3885547437465502713, guid: c8cdab4bf40b788478aa6a82ee726037, type: 3}
+  m_PrefabInstance: {fileID: 321793355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1412494931
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class demonShooter : Enemy
     public float cooldown = 3f;
     public float lastTimeFired;
 
+    public bool CanShoot = false;
+
     protected void FixedUpdate(){
 
         collidingWithPlayer = false;
@@ -30,7 +32,13 @@ public class demonShooter : Enemy
 
 
     }
-
+    public void FIRE(){
+        CanShoot = true;
+    }
+    public void STOPFIRE(){
+        CanShoot = false;
+    }
+    
     public void Danger(){
     float distanceToPlayer = Vector3.Distance(playerTransform.position, startingPosition);
 
@@ -52,6 +60,7 @@ public class demonShooter : Enemy
                 // Run away from the player
                 Vector3 directionAwayFromPlayer = (transform.position - playerTransform.position).normalized;
                 UpdateMotor(directionAwayFromPlayer);
+                chasing = false;
             }
             else
             {
@@ -90,12 +99,12 @@ public class demonShooter : Enemy
     public void shoot(){
         if (Time.time - lastTimeFired > cooldown)
         {
-            anim.SetTrigger("Shoot");
-            lastTimeFired = Time.time;
-            
-            Debug.Log("111");
-            GameObject projectileThrow = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        
+            if(CanShoot){
+                anim.SetTrigger("Shoot");
+                lastTimeFired = Time.time;
+                GameObject projectileThrow = Instantiate(projectile, firePoint.position, firePoint.rotation);
+                CanShoot = false;
+            }
         }
     
     }

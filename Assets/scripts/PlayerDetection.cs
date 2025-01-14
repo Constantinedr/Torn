@@ -12,7 +12,7 @@ public class PlayerDetection : Collidable
             if(Detected!=true){
             Detected=true;
             Alert();
-            Debug.Log("ALERT");
+            
             }
         }
         else{
@@ -20,6 +20,9 @@ public class PlayerDetection : Collidable
             ShootAt();
         }
     }
+
+    
+
     public void Alert(){
         if (Detected){
         demonShooter demonShooter = enemyGameObject.GetComponent<demonShooter>();
