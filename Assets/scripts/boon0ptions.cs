@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
-
 public class BoonOptionsManager : MonoBehaviour
 {
     [System.Serializable]
@@ -16,20 +15,38 @@ public class BoonOptionsManager : MonoBehaviour
         public string description;   // Description of the boon
         public UnityEvent buttonAction; // Action to assign to the button
     }
-    
 
-
-
-    // List of prefab data for boons
     public List<BoonData> boonPrefabs;
     public GameObject ability1;
     public GameObject ability2;
     public GameObject ability3;
+    public GameObject BoonManager;
+    public bool CanMove = true;
+
+    private BoonManager playerScript;
 
     void Start()
     {
+        if (BoonManager == null)
+        {
+            Debug.LogError("BoonManager is not assigned!");
+            return;
+        }
+
         AssignRandomBoons();
-        
+        playerScript = BoonManager.GetComponent<BoonManager>();
+    }
+
+    private void Update()
+    {
+        if (CanMove == false)
+        {
+            playerScript.FreezePlayer();
+        }
+        else
+        {
+            playerScript.UnfreezePlayer();
+        }
     }
 
     private void AssignRandomBoons()
@@ -40,11 +57,9 @@ public class BoonOptionsManager : MonoBehaviour
             return;
         }
 
-        // Shuffle the boonPrefabs list
         List<BoonData> shuffledBoons = new List<BoonData>(boonPrefabs);
         ShuffleList(shuffledBoons);
 
-        // Assign boons to each ability
         AssignBoonToAbility(ability1, shuffledBoons[0]);
         AssignBoonToAbility(ability2, shuffledBoons[1]);
         AssignBoonToAbility(ability3, shuffledBoons[2]);
@@ -52,13 +67,11 @@ public class BoonOptionsManager : MonoBehaviour
 
     private void AssignBoonToAbility(GameObject ability, BoonData boon)
     {
-        // Find UI elements inside the ability
         Transform boonIcon = ability.transform.Find("boonIcon");
         Transform titleBoon = ability.transform.Find("TitleBoon");
         Transform textDescription = ability.transform.Find("TextDescription");
         Transform abilityButton = ability.transform.Find("abilityButton");
 
-        // Assign the icon
         if (boonIcon != null && boonIcon.GetComponent<Image>() != null)
         {
             boonIcon.GetComponent<Image>().sprite = boon.icon;
@@ -69,7 +82,6 @@ public class BoonOptionsManager : MonoBehaviour
             Debug.LogWarning($"boonIcon not found or missing Image component in {ability.name}");
         }
 
-        // Assign the title
         if (titleBoon != null && titleBoon.GetComponent<TextMeshProUGUI>() != null)
         {
             titleBoon.GetComponent<TextMeshProUGUI>().text = boon.title;
@@ -80,7 +92,6 @@ public class BoonOptionsManager : MonoBehaviour
             Debug.LogWarning($"TitleBoon not found or missing Text component in {ability.name}");
         }
 
-        // Assign the description
         if (textDescription != null && textDescription.GetComponent<TextMeshProUGUI>() != null)
         {
             textDescription.GetComponent<TextMeshProUGUI>().text = boon.description;
@@ -91,11 +102,10 @@ public class BoonOptionsManager : MonoBehaviour
             Debug.LogWarning($"TextDescription not found or missing Text component in {ability.name}");
         }
 
-        // Assign the button action
         if (abilityButton != null && abilityButton.GetComponent<Button>() != null)
         {
             Button button = abilityButton.GetComponent<Button>();
-            button.onClick.RemoveAllListeners(); // Clear any previous actions
+            button.onClick.RemoveAllListeners();
             if (boon.buttonAction != null)
             {
                 button.onClick.AddListener(() => boon.buttonAction.Invoke());

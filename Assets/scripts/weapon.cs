@@ -13,22 +13,22 @@ public class Weapon : Collidable
 
     private BoxCollider2D weaponCollider; // Reference to the weapon's collider
 
-    private float cooldown = 0.2f;
+    public float cooldown = 0.2f;
     private float lastSwing;
     private Animator anim;
 
 
         public void Freeze()
     {
-   
-    anim.enabled = false; // Stop animations
-    this.enabled = false; // Disable the Player script
+    
+        anim.enabled = false; // Stop animations
+        this.enabled = false; // Disable the Player script
     }
 
     public void Unfreeze()
     {   
-    anim.enabled = true;
-    this.enabled = true;
+        anim.enabled = true;
+        this.enabled = true;
     }
     protected override void Start()
     {

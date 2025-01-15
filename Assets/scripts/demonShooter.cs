@@ -103,7 +103,7 @@ public class demonShooter : Enemy
                 anim.SetTrigger("Shoot");
                 lastTimeFired = Time.time;
                 GameObject projectileThrow = Instantiate(projectile, firePoint.position, firePoint.rotation);
-                CanShoot = false;
+              
             }
         }
     

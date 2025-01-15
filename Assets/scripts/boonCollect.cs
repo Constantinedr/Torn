@@ -11,20 +11,9 @@ public class boonCollect : Collectable
         if (!collected)
         {
             collected = true;
+            Animator animator = boonOptions.GetComponent<Animator>();
+            animator.SetTrigger("Show");
 
-            // Trigger the animation on the boonOptions' Animator
-            if (boonOptions != null)
-            {
-                Animator animator = boonOptions.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.SetTrigger("Show");
-                }
-
-                
-            }
-
-            // Destroy the collected item
             Destroy(gameObject);
         }
     }

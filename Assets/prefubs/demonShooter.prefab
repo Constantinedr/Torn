@@ -230,7 +230,6 @@ GameObject:
   - component: {fileID: 496477211574037172}
   - component: {fileID: 8934646735824773087}
   - component: {fileID: 989445523354828441}
-  - component: {fileID: 7322820247463318973}
   m_Layer: 0
   m_Name: PlayerDetector
   m_TagString: Untagged
@@ -285,7 +284,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02788663, y: 0.011154637}
+  m_Offset: {x: -0.023694582, y: -0.036458746}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -296,7 +295,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.843835, y: 0.9107629}
+  m_Size: {x: 0.4391207, y: 0.34733728}
   m_EdgeRadius: 0
 --- !u!114 &989445523354828441
 MonoBehaviour:
@@ -325,18 +324,6 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   enemyGameObject: {fileID: 2150889826921860333}
---- !u!114 &7322820247463318973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2641120234884345475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f2b56b8b493cf49995155071cb2d35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3628327403413431907
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +439,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4215414083504671479}
-  - component: {fileID: 1686129673057097768}
   - component: {fileID: 11196304031718732}
   - component: {fileID: 9033797487536462560}
   m_Layer: 0
@@ -477,33 +463,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7650234741556210509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1686129673057097768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3885547437465502713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be3ab3a04b004946a4ceaa106f1173a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  enemyGameObject: {fileID: 2150889826921860333}
 --- !u!61 &11196304031718732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -536,7 +495,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.054002047, y: 0.024038136}
+  m_Offset: {x: 0.09580776, y: -0.19753277}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -547,7 +506,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2498212, y: 2.5716486}
+  m_Size: {x: 1.7815957, y: 1.2923903}
   m_EdgeRadius: 0
 --- !u!114 &9033797487536462560
 MonoBehaviour:
@@ -576,3 +535,4 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   enemyGameObject: {fileID: 2150889826921860333}
+  colliderSource: {fileID: 3885547437465502713}

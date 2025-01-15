@@ -32,19 +32,34 @@ public class Player : Mover
 
     public void Freeze()
     {
-    // Stop all movement and actions
-    isAlive = false; // Prevent FixedUpdate from handling movement
-    anim.enabled = false; // Stop animations
-    this.enabled = false; // Disable the Player script
+        // Stop all movement and actions
+        isAlive = false; // Prevent FixedUpdate from handling movement
+        anim.enabled = false; // Stop animations
+        this.enabled = false; // Disable the Player script
     }
 
     public void Unfreeze()
     {   
-    // Restore all movement and actions
-    isAlive = true;
-    anim.enabled = true;
-    this.enabled = true;
+        // Restore all movement and actions
+        isAlive = true;
+        anim.enabled = true;
+        this.enabled = true;
     }
+    public void HeartSteel(int x)
+{
+    maxHitpoint += x;
+    heartManager?.InitializeHearts(maxHitpoint);
+    heartManager?.UpdateHearts(hitpoint);
+}
+
+public void ActivateSpeedBuffPASSIVE()
+{
+    if (!isSpeedBuffActive)
+    {
+        xSpeed *= speedBuffMultiplier;
+        ySpeed *= speedBuffMultiplier;
+    }
+}
 
     protected override void Start()
     {
@@ -266,9 +281,6 @@ private void PerformDash()
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
     }
     
-    public void HeartSteel(int x){
-         maxHitpoint+=x;
-         heartManager.InitializeHearts(maxHitpoint);
-    }
+
 }
 
