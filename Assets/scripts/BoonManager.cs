@@ -14,7 +14,12 @@ public class BoonManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager");
         weapon = GameObject.Find("weapon_0");
     }
+    private void Update(){
+        player = GameObject.Find("PLAYER");
+        gameManager = GameObject.Find("GameManager");
+        weapon = GameObject.Find("weapon_0");
 
+    }
     public void FreezePlayer()
     {
         Player playerScript = player.GetComponent<Player>();
@@ -45,7 +50,10 @@ public class BoonManager : MonoBehaviour
             Debug.LogError("Player script not found! Cannot apply HeartSteel.");
         }
     }
-
+    public void HellHoundFury(){
+        Player playerScript = player.GetComponent<Player>();
+        playerScript.HellHoundFury();
+    }
     public void SpeedDemon()
     {
         Player playerScript = player.GetComponent<Player>();

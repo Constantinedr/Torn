@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - FIGHTER
+  - WALL
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,10 @@ TagManager:
     locked: 0
   - name: weapon
     uniqueID: 820611145
+    locked: 0
+  - name: WALL
+    uniqueID: 993158057
+    locked: 0
+  - name: weapon
+    uniqueID: 2943625377
     locked: 0

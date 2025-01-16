@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void Respawn(){
+        experience = 0;
+        PlayerLevel=1;
+        score =0;
         deathMenuAnim.SetTrigger("Hide");
         UnityEngine.SceneManagement.SceneManager.LoadScene("MAIN");
     }

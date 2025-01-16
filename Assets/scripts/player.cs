@@ -5,7 +5,9 @@ using UnityEngine;
 public class Player : Mover
 {
     public int level;
+    private int HellHoundFuryBoolBuff=0;
     public GameObject DeathMenu;
+    public GameObject weapon;
     private Animator anim;
     private bool isAlive = true;
     private HeartManager heartManager;
@@ -16,12 +18,13 @@ public class Player : Mover
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-
+    public float damageMultiplier =0;
+    public bool HellHoundFuryBool = false;
     private float dashTime;
     private float cooldownTime;
     private bool isDashing;
     private Vector2 dashDirection;
-
+    private int HellhoundActive=0;
     private Rigidbody2D rb;
 
     private int lastHitpoint; // Store previous HP for change detection
@@ -92,11 +95,28 @@ public void ActivateSpeedBuffPASSIVE()
     }
     private void Update(){
         HandleDashInput();
-        if (isDashing){
-        
-        Debug.Log("dash");
+        HandleAbilities();
+    }
+private void HandleAbilities()
+{
+    if (HellHoundFuryBool)
+    {
+     
+        if (hitpoint <= maxHitpoint * 0.25f && HellhoundActive == 0)
+        {
+            damageMultiplier += HellHoundFuryBoolBuff * 2; 
+            HellhoundActive = 1; 
+        }
+
+        else if (hitpoint > maxHitpoint * 0.25f && HellhoundActive == 1)
+        {
+            damageMultiplier = 0; 
+            HellhoundActive = 0; 
         }
     }
+}
+
+
     private void FixedUpdate()
     {
         // Check for HP changes
@@ -116,17 +136,20 @@ public void ActivateSpeedBuffPASSIVE()
         }
         }
     }
-    private void HandleDashInput()
+ private void HandleDashInput()
 {
     if (Input.GetKeyDown(KeyCode.Space) && Time.time >= cooldownTime)
     {
-        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        dashDirection = (mousePosition - rb.position).normalized; // Dash toward mouse
+        
         if (dashDirection != Vector2.zero)
         {
             StartDash();
         }
     }
 }
+
 private void StartDash()
 {
     isDashing = true;
@@ -245,7 +268,10 @@ private void PerformDash()
             heartManager?.UpdateHearts(hitpoint);
         }
     }
-
+    public void HellHoundFury(){
+        HellHoundFuryBool=true;
+        HellHoundFuryBoolBuff+=1;
+    }
     protected override void ReceiveDamage(Damage dmg)
     {
         if (Time.time - LastImmune > immuneTime)
@@ -278,7 +304,26 @@ private void PerformDash()
     
     protected override void Death(){
         isAlive = false;
+        HellhoundActive=0;
+        damageMultiplier = 0;
+        maxHitpoint = 10;
+            if (isSpeedBuffActive)
+    {
+        xSpeed /= speedBuffMultiplier;
+        ySpeed /= speedBuffMultiplier;
+        isSpeedBuffActive = false;
+    }
+    if (isSpeedReductionActive)
+    {
+        xSpeed /= speedReductionMultiplier;
+        ySpeed /= speedReductionMultiplier;
+        isSpeedReductionActive = false;
+    }
+        hitpoint = maxHitpoint;
+        heartManager?.InitializeHearts(maxHitpoint);
+        heartManager?.UpdateHearts(hitpoint);
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
+
     }
     
 

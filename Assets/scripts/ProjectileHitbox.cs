@@ -25,6 +25,9 @@ public class ProjectileHitbox : Collidable
             coll.SendMessage("ReceiveDamage",dmg); 
             Destroy(par);
         }
+        else if (coll.tag == "WALL"){
+            Destroy(par);
+        }
 
     }
 }

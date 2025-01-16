@@ -27,6 +27,7 @@ public class BoonOptionsManager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         if (BoonManager == null)
         {
             Debug.LogError("BoonManager is not assigned!");

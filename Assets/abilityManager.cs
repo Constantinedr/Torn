@@ -8,11 +8,12 @@ public class AbilityManager : MonoBehaviour
     [System.Serializable]
     public class AbilitySlot
     {
-        public GameObject slotObject; // UI slot object
-        public bool isActive;         // Whether the slot is filled
+        public GameObject slotObject; 
+        public bool isActive;        
     }
-
-    public List<AbilitySlot> abilitySlots = new List<AbilitySlot>(); // List of ability slots
+    public Sprite defaultSprite;
+    public Color defaultColor = new Color(0.298f, 0.290f, 0.290f);
+    public List<AbilitySlot> abilitySlots = new List<AbilitySlot>(); 
 
     public void OnButtonPressed(Sprite selectedSprite)
     {
@@ -23,7 +24,7 @@ public class AbilityManager : MonoBehaviour
     {
         foreach (var slot in abilitySlots)
         {
-            if (!slot.isActive) // Find the first empty slot
+            if (!slot.isActive) 
             {
                 AssignSpriteToSlot(slot, sprite);
                 slot.isActive = true;
@@ -33,7 +34,24 @@ public class AbilityManager : MonoBehaviour
 
         Debug.LogWarning("No available slots to assign the sprite!");
     }
-
+    public void ResetAllIcons()
+{
+    foreach (var slot in abilitySlots)
+    {
+        if (slot.isActive)
+        {
+            Image slotImage = slot.slotObject.GetComponent<Image>();
+            if (slotImage != null)
+            {
+                slotImage.sprite = defaultSprite; 
+                slotImage.color = defaultColor;  
+                slot.slotObject.SetActive(false); 
+                slot.isActive = false; 
+         
+            }
+        }
+    }
+}
     private void AssignSpriteToSlot(AbilitySlot slot, Sprite sprite)
     {
         if (slot.slotObject == null)

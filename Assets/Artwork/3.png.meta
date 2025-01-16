@@ -2272,6 +2272,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: death_revive
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 62
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73424d5ebadbcd84f9dadca571013b24
+      internalID: 1957840228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gasmaxxing
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 159
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b58cfc701e20649a68ecbba8826767
+      internalID: 775978388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2330,6 +2372,7 @@ TextureImporter:
       coin1: 1535724975
       coin3: -498964604
       coin4: 1071131162
+      death_revive: 1957840228
       demonbossspawn: 1652612113
       demonbossspawn2: -831372060
       demonbossspawn3: 306418579
@@ -2349,6 +2392,7 @@ TextureImporter:
       fountain1: 1455965185
       fountain2: -1267791365
       fountain3: -1592079122
+      gasmaxxing: 775978388
       goblinA: -1319535332
       goblinA2: -1720984553
       goblinA3: 330601988

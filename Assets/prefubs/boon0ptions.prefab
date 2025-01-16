@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameManager: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!1 &1714984422556621829
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +940,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.8113208, g: 0, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1639,9 +1640,33 @@ MonoBehaviour:
             m_StringArgument: Hide
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7338784373978667219}
+          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
+          m_MethodName: HeartSteel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+          m_MethodName: OnButtonPressed
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1025934920, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 1
+          m_CallState: 2
   - icon: {fileID: 970184198, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
-    title: 'speed '
-    description: speed potion
+    title: SPEED DEMON
+    description: makes player faster
     buttonAction:
       m_PersistentCalls:
         m_Calls:
@@ -1652,6 +1677,30 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7338784373978667219}
+          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
+          m_MethodName: SpeedDemon
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+          m_MethodName: OnButtonPressed
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 970184198, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Hide
@@ -1678,6 +1727,8 @@ MonoBehaviour:
   ability1: {fileID: 5225476247119066310}
   ability2: {fileID: 6557105042974939594}
   ability3: {fileID: 229944261229871126}
+  BoonManager: {fileID: 1460234940320850312}
+  CanMove: 1
 --- !u!1 &7613091226877020676
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,11 @@ using UnityEngine;
 public class boonCollect : Collectable
 {
     public GameObject boonOptions; 
+    protected override void Start (){
+
+        base.Start(); 
+        boonOptions = GameObject.Find("boon0ptions");
+    }
 
     protected override void OnCollect()
     {
