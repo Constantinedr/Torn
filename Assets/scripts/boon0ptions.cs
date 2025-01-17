@@ -49,7 +49,9 @@ public class BoonOptionsManager : MonoBehaviour
             playerScript.UnfreezePlayer();
         }
     }
-
+    public void reAssign(){
+        AssignRandomBoons();
+    }
     private void AssignRandomBoons()
     {
         if (boonPrefabs.Count == 0)

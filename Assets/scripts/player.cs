@@ -96,7 +96,31 @@ public void ActivateSpeedBuffPASSIVE()
     private void Update(){
         HandleDashInput();
         HandleAbilities();
+        HandleMouseMovement(); 
     }
+private void HandleMouseMovement()
+{
+    if (Input.GetMouseButtonDown(0)) // Left mouse button click
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0; // Make sure the z-coordinate is zero for 2D space
+
+        Vector3 playerPosition = transform.position;
+
+        // Check the mouse position relative to the player
+        if (mousePosition.x > playerPosition.x)
+        {
+            // Mouse is to the right, set scale to normal (1)
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            // Mouse is to the left, set scale to flipped (-1)
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
+    }
+}
+
 private void HandleAbilities()
 {
     if (HellHoundFuryBool)
@@ -136,20 +160,17 @@ private void HandleAbilities()
         }
         }
     }
- private void HandleDashInput()
+    private void HandleDashInput()
 {
     if (Input.GetKeyDown(KeyCode.Space) && Time.time >= cooldownTime)
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        dashDirection = (mousePosition - rb.position).normalized; // Dash toward mouse
-        
+        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         if (dashDirection != Vector2.zero)
         {
             StartDash();
         }
     }
 }
-
 private void StartDash()
 {
     isDashing = true;
@@ -163,7 +184,7 @@ private void PerformDash()
     if (Time.time >= dashTime)
     {
         isDashing = false;
-        rb.velocity = Vector2.zero; // Stop movement after dash
+        rb.velocity = new Vector2(0f, 0f); // Stop movement after dash
     }
 }
     private void HandleMovement()

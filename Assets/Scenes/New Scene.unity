@@ -382,7 +382,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   dashSpeed: 1
   dashDuration: 0.3
-  dashCooldown: 0
+  dashCooldown: 1
   damageMultiplier: 0
   HellHoundFuryBool: 0
 --- !u!50 &32972574
@@ -393,7 +393,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32972571}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -407,11 +407,11 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!95 &32972575
 Animator:
   serializedVersion: 5
@@ -6000,7 +6000,49 @@ MonoBehaviour:
           m_MethodName: OnButtonPressed
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 21300000, guid: fccf8b8b620c5954ba06698c10b1e02a, type: 3}
+            m_ObjectArgument: {fileID: -472639824, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+  - icon: {fileID: 119131183, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+    title: Hellbound Fury
+    description: Deal bonus damage when your health is critically low.
+    buttonAction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1558470390}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 601372107}
+          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
+          m_MethodName: HellHoundFury
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 407640870}
+          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+          m_MethodName: OnButtonPressed
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: -472639824, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0

@@ -17,6 +17,11 @@ public class boonCollect : Collectable
         {
             collected = true;
             Animator animator = boonOptions.GetComponent<Animator>();
+            BoonOptionsManager boonOptionsManager = boonOptions.GetComponent<BoonOptionsManager>();
+            if (boonOptionsManager != null)
+            {
+                boonOptionsManager.reAssign();  // Shuffle the boons
+            }
             animator.SetTrigger("Show");
 
             Destroy(gameObject);
