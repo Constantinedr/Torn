@@ -36,6 +36,10 @@ public class BoonManager : MonoBehaviour
         weaponScript.Unfreeze();
 
     }
+    public void DefyDeath(){
+        Player playerScript = player.GetComponent<Player>();
+        playerScript.DefyDeath();
+    }
 
     public void HeartSteel()
     {

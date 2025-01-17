@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Mover
 {
     public int level;
+    private bool DefyDeathBool= false;
     private int HellHoundFuryBoolBuff=0;
     public GameObject DeathMenu;
     public GameObject weapon;
@@ -322,29 +323,39 @@ private void PerformDash()
             anim.SetTrigger("rel");
         }
     }
-    
-    protected override void Death(){
-        isAlive = false;
-        HellhoundActive=0;
-        damageMultiplier = 0;
-        maxHitpoint = 10;
-            if (isSpeedBuffActive)
-    {
-        xSpeed /= speedBuffMultiplier;
-        ySpeed /= speedBuffMultiplier;
-        isSpeedBuffActive = false;
-    }
-    if (isSpeedReductionActive)
-    {
-        xSpeed /= speedReductionMultiplier;
-        ySpeed /= speedReductionMultiplier;
-        isSpeedReductionActive = false;
-    }
-        hitpoint = maxHitpoint;
-        heartManager?.InitializeHearts(maxHitpoint);
-        heartManager?.UpdateHearts(hitpoint);
-        GameManager.instance.deathMenuAnim.SetTrigger("Show");
+public void DefyDeath()
+{
+    DefyDeathBool = true; 
+}
 
+    protected override void Death(){
+        if (DefyDeathBool){
+            DefyDeathBool = false;
+            hitpoint = 5;
+            GameManager.instance.ShowText("RESSURECT!", 25, Color.yellow, transform.position, Vector3.up * 40, 1f);
+        }
+        else{
+                isAlive = false;
+                HellhoundActive=0;
+                damageMultiplier = 0;
+                maxHitpoint = 10;
+                    if (isSpeedBuffActive)
+            {
+                xSpeed /= speedBuffMultiplier;
+                ySpeed /= speedBuffMultiplier;
+                isSpeedBuffActive = false;
+            }
+            if (isSpeedReductionActive)
+            {
+                xSpeed /= speedReductionMultiplier;
+                ySpeed /= speedReductionMultiplier;
+                isSpeedReductionActive = false;
+            }
+                hitpoint = maxHitpoint;
+                heartManager?.InitializeHearts(maxHitpoint);
+                heartManager?.UpdateHearts(hitpoint);
+                GameManager.instance.deathMenuAnim.SetTrigger("Show");
+        }
     }
     
 
