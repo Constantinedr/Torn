@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Mover
 {
     public int level;
+    private bool IsMoving;
     private bool DefyDeathBool= false;
     private int HellHoundFuryBoolBuff=0;
     public GameObject DeathMenu;
@@ -121,7 +122,38 @@ private void HandleMouseMovement()
         }
     }
 }
+    protected override void UpdateMotor(Vector3 input)
+    {
+        moveDelta = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
 
+        // Flip character direction based on X movement
+        if (moveDelta.x > 0 && !IsMoving)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Face right
+        }
+        else if (moveDelta.x < 0 && !IsMoving)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Face left
+        }
+
+        // Add push force, then gradually reduce it
+        moveDelta += pushDirection;
+        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverSpeed);
+
+        // Vertical movement
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("actor", "blocking"));
+        if (hit.collider == null)
+        {
+            transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
+        }
+
+        // Horizontal movement
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("actor", "blocking"));
+        if (hit.collider == null)
+        {
+            transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
+        }
+    }
 private void HandleAbilities()
 {
     if (HellHoundFuryBool)
@@ -229,11 +261,13 @@ private void PerformDash()
         {
             // Player is moving
             anim.SetBool("IsWalking2", true);  // Play "IsWalking2" animation
+            IsMoving = true;
         }
         else
         {
             // Player is not moving
             anim.SetBool("IsWalking2", false); // Stop the walking animation
+            IsMoving = false;
         }
     }
 
