@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DangerScript : PlayerDetection
+{
+    public void Alert(){
+        if (Detected){
+        demonShooter demonShooter = enemyGameObject.GetComponent<demonShooter>();
+        demonShooter.Danger();
+        }
+        else{
+            return;
+        }
+    }
+     public void ShootAt(){
+        if (!Detected){
+        demonShooter demonShooter = enemyGameObject.GetComponent<demonShooter>();
+        demonShooter.shoot();
+        }
+        else{
+            return;
+        }
+    }
+}

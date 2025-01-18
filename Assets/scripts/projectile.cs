@@ -21,9 +21,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-       
 
-        // Move the projectile
         transform.position += direction * speed * Time.deltaTime;
 
         // Optional: Rotate the projectile to face the target
