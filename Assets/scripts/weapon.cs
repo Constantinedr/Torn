@@ -68,6 +68,15 @@ public class Weapon : Collidable
                 Swing();
             }
         }
+           if (Input.GetMouseButton(1)) // Left mouse button
+        {
+            if (Time.time - lastSwing > cooldown)
+            {
+                lastSwing = Time.time;
+                SwingHeavy();
+            }
+        }
+       
        
     }
 
@@ -94,29 +103,16 @@ public class Weapon : Collidable
         anim.SetTrigger("Swing");
         WeaponSwing.Play();
         // Enable the collider and sprite during the swing
-        if (weaponCollider != null)
-        {
-            weaponCollider.enabled = true;
-        }
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = true;
-        }
 
-        // Disable the collider and sprite after a short duration
-        Invoke(nameof(EndSwing), 0.5f); // Adjust the duration as needed
+
     }
-
-    private void EndSwing()
+        private void SwingHeavy()
     {
-        if (weaponCollider != null)
-        {
-            weaponCollider.enabled = false;
-        }
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = false;
-        }
-        anim.SetTrigger("release");
+        anim.SetTrigger("Heavy");
+        WeaponSwing.Play();
+        // Enable the collider and sprite during the swing
+
+
     }
+
 }

@@ -6,8 +6,8 @@ public class Player : Mover
 {
     public int level;
     private bool IsMoving;
-    private bool DefyDeathBool= false;
-    private int HellHoundFuryBoolBuff=0;
+    private bool DefyDeathBool = false;
+    private int HellHoundFuryBoolBuff = 0;
     public GameObject DeathMenu;
     public GameObject weapon;
     private Animator anim;
@@ -20,18 +20,19 @@ public class Player : Mover
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-    public float damageMultiplier =0;
+    public float damageMultiplier = 0;
     public bool HellHoundFuryBool = false;
     private float dashTime;
     private float cooldownTime;
     private bool isDashing;
     private Vector2 dashDirection;
-    private int HellhoundActive=0;
+    private int HellhoundActive = 0;
     private Rigidbody2D rb;
-
+    
     private int lastHitpoint; // Store previous HP for change detection
 
-    public void DestroyObjcect(){
+    public void DestroyObjcect()
+    {
         Destroy(gameObject);
     }
 
@@ -44,27 +45,28 @@ public class Player : Mover
     }
 
     public void Unfreeze()
-    {   
+    {
         // Restore all movement and actions
         isAlive = true;
         anim.enabled = true;
         this.enabled = true;
     }
-    public void HeartSteel(int x)
-{
-    maxHitpoint += x;
-    heartManager?.InitializeHearts(maxHitpoint);
-    heartManager?.UpdateHearts(hitpoint);
-}
 
-public void ActivateSpeedBuffPASSIVE()
-{
-    if (!isSpeedBuffActive)
+    public void HeartSteel(int x)
     {
-        xSpeed *= speedBuffMultiplier;
-        ySpeed *= speedBuffMultiplier;
+        maxHitpoint += x;
+        heartManager?.InitializeHearts(maxHitpoint);
+        heartManager?.UpdateHearts(hitpoint);
     }
-}
+
+    public void ActivateSpeedBuffPASSIVE()
+    {
+        if (!isSpeedBuffActive)
+        {
+            xSpeed *= speedBuffMultiplier;
+            ySpeed *= speedBuffMultiplier;
+        }
+    }
 
     protected override void Start()
     {
@@ -83,8 +85,6 @@ public void ActivateSpeedBuffPASSIVE()
         base.Start();
         DontDestroyOnLoad(gameObject);
 
-
-
         GameObject spawner = GameObject.Find("SPAWN");
 
         if (spawner != null)
@@ -93,53 +93,74 @@ public void ActivateSpeedBuffPASSIVE()
             transform.position = spawner.transform.position;
             Debug.Log($"{gameObject.name} teleported to Spawner at {spawner.transform.position}");
         }
-
     }
-    private void Update(){
+
+    private void Update()
+    {
         HandleDashInput();
         HandleAbilities();
-        HandleMouseMovement(); 
+        HandleMouseMovement();
     }
-private void HandleMouseMovement()
-{
-    if (Input.GetMouseButtonDown(0)) // Left mouse button click
+
+    private void HandleMouseMovement()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) // Left or Right mouse button
+        {
+            FaceMouse();
+        }
+    }
+
+    private void FaceMouse()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0; // Make sure the z-coordinate is zero for 2D space
+        mousePosition.z = 0; // Ensure the z-coordinate is zero for 2D space
 
-        Vector3 playerPosition = transform.position;
-
-        // Check the mouse position relative to the player
-        if (mousePosition.x > playerPosition.x)
+        if (mousePosition.x > transform.position.x)
         {
-            // Mouse is to the right, set scale to normal (1)
+            // Face right
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            // Mouse is to the left, set scale to flipped (-1)
+            // Face left
             transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
     }
-}
+
     protected override void UpdateMotor(Vector3 input)
     {
         moveDelta = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
 
-        // Flip character direction based on X movement
-        if (moveDelta.x > 0 && !IsMoving)
+        if (moveDelta.x != 0)
         {
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Face right
-        }
-        else if (moveDelta.x < 0 && !IsMoving)
-        {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); // Face left
+            // Face direction of movement
+            HandleFacingDirection(moveDelta.x);
         }
 
-        // Add push force, then gradually reduce it
+        // Add push force and reduce gradually
         moveDelta += pushDirection;
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverSpeed);
 
+        // Apply movement and handle collisions
+        HandleCollisionAndMovement();
+    }
+
+    private void HandleFacingDirection(float xMovement)
+    {
+        if (xMovement > 0)
+        {
+            // Face right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (xMovement < 0)
+        {
+            // Face left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+    private void HandleCollisionAndMovement()
+    {
         // Vertical movement
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("actor", "blocking"));
         if (hit.collider == null)
@@ -154,75 +175,78 @@ private void HandleMouseMovement()
             transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
         }
     }
-private void HandleAbilities()
-{
-    if (HellHoundFuryBool)
-    {
-     
-        if (hitpoint <= maxHitpoint * 0.25f && HellhoundActive == 0)
-        {
-            damageMultiplier += HellHoundFuryBoolBuff * 2; 
-            HellhoundActive = 1; 
-        }
 
-        else if (hitpoint > maxHitpoint * 0.25f && HellhoundActive == 1)
+    private void HandleAbilities()
+    {
+        if (HellHoundFuryBool)
         {
-            damageMultiplier = 0; 
-            HellhoundActive = 0; 
+            if (hitpoint <= maxHitpoint * 0.25f && HellhoundActive == 0)
+            {
+                damageMultiplier += HellHoundFuryBoolBuff * 2;
+                HellhoundActive = 1;
+            }
+            else if (hitpoint > maxHitpoint * 0.25f && HellhoundActive == 1)
+            {
+                damageMultiplier = 0;
+                HellhoundActive = 0;
+            }
         }
     }
-}
-
 
     private void FixedUpdate()
-    {
+    {   
         // Check for HP changes
         if (hitpoint != lastHitpoint)
         {
             OnHPChanged();
             lastHitpoint = hitpoint; // Update lastHitpoint
         }
-        if (isAlive){
-        heartManager?.UpdateHearts(hitpoint);
-        
-        HandleMovement();
-        
-        if (isDashing)
-        {
-            PerformDash();
-        }
-        }
-    }
-    private void HandleDashInput()
-{
-    if (Input.GetKeyDown(KeyCode.Space) && Time.time >= cooldownTime)
-    {
-        dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        if (dashDirection != Vector2.zero)
-        {
-            StartDash();
-        }
-    }
-}
-private void StartDash()
-{
-    isDashing = true;
-    dashTime = Time.time + dashDuration;
-    cooldownTime = Time.time + dashCooldown;
-}
-private void PerformDash()
-{
-    rb.velocity = dashDirection * dashSpeed;
 
-    if (Time.time >= dashTime)
-    {
-        isDashing = false;
-        rb.velocity = new Vector2(0f, 0f); // Stop movement after dash
+        if (isAlive)
+        {
+            heartManager?.UpdateHearts(hitpoint);
+            HandleMovement();
+
+            if (isDashing)
+            {
+                PerformDash();
+            }
+        }
     }
-}
+
+    private void HandleDashInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= cooldownTime)
+        {
+            dashDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            if (dashDirection != Vector2.zero)
+            {
+                StartDash();
+            }
+        }
+    }
+
+    private void StartDash()
+    {
+        isDashing = true;
+        dashTime = Time.time + dashDuration;
+        cooldownTime = Time.time + dashCooldown;
+    }
+
+    private void PerformDash()
+    {
+        rb.velocity = dashDirection * dashSpeed;
+
+        if (Time.time >= dashTime)
+        {
+            isDashing = false;
+
+            rb.velocity = new Vector2(0f, 0f); // Stop movement after dash
+        }
+    }
+
     private void HandleMovement()
     {
-        
         // Handle speed reduction when right mouse button is held
         if (Input.GetMouseButton(1)) // Right mouse button
         {
@@ -324,13 +348,16 @@ private void PerformDash()
             heartManager?.UpdateHearts(hitpoint);
         }
     }
-    public void HellHoundFury(){
-        HellHoundFuryBool=true;
-        HellHoundFuryBoolBuff+=1;
+
+    public void HellHoundFury()
+    {
+        HellHoundFuryBool = true;
+        HellHoundFuryBoolBuff += 1;
     }
+
     protected override void ReceiveDamage(Damage dmg)
     {
-        if (Time.time - LastImmune > immuneTime)
+        if (Time.time - LastImmune > immuneTime && !isDashing)
         {
             LastImmune = Time.time;
             hitpoint -= dmg.damageAmount;
@@ -357,11 +384,11 @@ private void PerformDash()
             anim.SetTrigger("rel");
         }
     }
-public void DefyDeath()
-{
-    DefyDeathBool = true; 
-}
 
+    public void DefyDeath()
+    {
+        DefyDeathBool = true;
+    }
     protected override void Death(){
         if (DefyDeathBool){
             DefyDeathBool = false;
