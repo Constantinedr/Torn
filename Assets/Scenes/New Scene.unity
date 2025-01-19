@@ -9294,6 +9294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  GoldText: {fileID: 1014610848}
 --- !u!225 &1947760158
 CanvasGroup:
   m_ObjectHideFlags: 0
