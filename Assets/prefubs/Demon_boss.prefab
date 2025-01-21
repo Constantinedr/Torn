@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 5956944087992247037}
   - component: {fileID: 8583992168018954548}
   - component: {fileID: 1272998016396030961}
+  - component: {fileID: 2160604456936151703}
   m_Layer: 7
   m_Name: Demon_boss
   m_TagString: FIGHTER
@@ -272,17 +273,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab79b0718f01d1c49a300f496ccda1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 30
+  hitpoint: 15
   maxHitpoint: 30
   pushRecoverSpeed: 0.1
+  immuneTime: 0.2
   ySpeed: 0.2
   xSpeed: 0.2
   xpValue: 1
   goldValue: 1
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 3639161282952133549}
-  triggerLength: 1
-  chaseLength: 5
+  scoreValue: 10
+  triggerLength: 10
+  chaseLength: 4
+  defaultXSpeed: 1
+  defaultYSpeed: 0.75
+  chaseXSpeed: 0
+  chaseYSpeed: 0
+  chasing: 0
+  collidingWithPlayer: 0
+  playerTransform: {fileID: 0}
+  startingPosition: {x: 0, y: 0, z: 0}
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -297,3 +308,49 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  hitbox: {fileID: 0}
+  hits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  topHalfPrefab: {fileID: 1574883940980016465, guid: fb1142aeec7171741b2bf05ce2bcab53, type: 3}
+  Player: {fileID: 0}
+  bottomHalfPrefab: {fileID: 1720674537419131692, guid: 68244ef40e9b5c44e9d929f9c84f5c05, type: 3}
+  splitDuration: 5
+  dashSpeed: 1
+  dashCooldown: 5
+  spawners: []
+--- !u!50 &2160604456936151703
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9130872216833234018}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
