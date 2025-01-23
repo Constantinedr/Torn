@@ -1,11 +1,11 @@
 using UnityEngine;
 
 public class BossDemon : Enemy
-{   
+{
     public GameObject topHalfPrefab;  // Assign in Inspector
-    public GameObject Player; 
+    public GameObject Player;
     public GameObject bottomHalfPrefab; // Assign in Inspector
-    public float splitDuration = 5f;  // Time before reforming
+    public float dashDuration = 0.5f;
     public float dashSpeed = 1f; // Speed of the dash
     public float dashCooldown = 10f; // Cooldown between dashes
     private bool canDash = true; // To control dash cooldown    
@@ -14,7 +14,8 @@ public class BossDemon : Enemy
     public SPAWNER[] spawners; // Array to hold references to the spawners
     private bool frenzyTriggered = false; // Ensure Frenzy triggers only once
     private bool calmTriggered = false;   // Ensure Calm triggers only once
-    private bool SplitTriggered = false;
+    private bool splitTriggered = false;
+    private bool halvesDestroyed = false;
 
     // Override the animation state method
     protected override void SetAnimationState(bool isWalking)
@@ -36,15 +37,15 @@ public class BossDemon : Enemy
             GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.up * 40, 1f);
 
             // Trigger Frenzy at 50% health
-            if (!frenzyTriggered && hitpoint <= maxHitpoint * 0.5 && hitpoint > 0)
+            if (!frenzyTriggered && hitpoint <= maxHitpoint * 0.5f && hitpoint > 0)
             {
                 frenzy();
                 frenzyTriggered = true;
             }
-            if (!SplitTriggered && hitpoint <= maxHitpoint * 0.25 && hitpoint > 0)
+            if (!splitTriggered && hitpoint <= maxHitpoint * 0.1f && hitpoint > 0)
             {
                 Split();
-                SplitTriggered = true;
+                splitTriggered = true;
             }
             // Trigger Calm at near max health
             if (!calmTriggered && hitpoint >= maxHitpoint - 1)
@@ -52,30 +53,30 @@ public class BossDemon : Enemy
                 calm();
                 calmTriggered = true;
             }
-
-            // Handle Death
-            if (hitpoint <= 0)
-            {
-                hitpoint = 0;
-                Death();
-            }
         }
     }
-     private void Update()
+
+    private void Update()
     {
         // Randomly trigger dash if possible
         if (Random.Range(0, 100) < 2)  // 2% chance per frame to dash
         {
             ChompChompDash();
         }
-        
+
+        // Check if both halves are destroyed to destroy the main boss
+        if (splitTriggered)
+        {
+            Destroy(gameObject);
+        }
     }
-      private void ResetDash()
+
+    private void ResetDash()
     {
         canDash = true;
     }
 
-  protected void ChompChompDash()
+    protected void ChompChompDash()
     {
         if (canDash)
         {
@@ -83,16 +84,29 @@ public class BossDemon : Enemy
 
             if (player != null)
             {
-                Debug.Log("Boss is dashing towards the player!");
-
+                // Calculate the dash direction
                 Vector2 dashDirection = (player.transform.position - transform.position).normalized;
 
-                GetComponent<Rigidbody2D>().velocity = dashDirection * dashSpeed;
+                // Dash movement
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                rb.velocity = dashDirection * dashSpeed;
 
+                // Disable dashing ability until cooldown is complete
                 canDash = false;
+
+                // Stop the dash after the duration
+                Invoke(nameof(StopDash), dashDuration);
+
+                // Reset dash ability after cooldown
                 Invoke(nameof(ResetDash), dashCooldown);
             }
         }
+    }
+
+    private void StopDash()
+    {
+        // Stop the boss's movement by setting velocity to zero
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     protected virtual void frenzy()
@@ -105,23 +119,47 @@ public class BossDemon : Enemy
             }
         }
     }
-     protected virtual void Split()
-    {
-        Debug.Log("Boss is splitting!");
 
-        Destroy(gameObject);
-        // Instantiate split parts
+    protected virtual void Split()
+    {
+        // Disable the boss's sprite and colliders instead of destroying it
+        DisableBoss();
+
+        // Instantiate top and bottom halves
         topHalfInstance = Instantiate(topHalfPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
         bottomHalfInstance = Instantiate(bottomHalfPrefab, transform.position + Vector3.down * 0.5f, Quaternion.identity);
 
         // Apply movement to the halves (e.g., moving in opposite directions)
         topHalfInstance.GetComponent<Rigidbody2D>().velocity = Vector2.up * 2f;
         bottomHalfInstance.GetComponent<Rigidbody2D>().velocity = Vector2.down * 2f;
-
- 
     }
 
+    private void DisableBoss()
+    {
+         Destroy(gameObject);
+        GetComponent<SpriteRenderer>().enabled = false;
+        Collider2D collider = GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
 
+        // Disable sprite renderers and colliders of all children
+        foreach (Transform child in transform)
+        {
+            SpriteRenderer childSprite = child.GetComponent<SpriteRenderer>();
+            if (childSprite != null)
+            {
+                childSprite.enabled = false;
+            }
+
+            Collider2D childCollider = child.GetComponent<Collider2D>();
+            if (childCollider != null)
+            {
+                childCollider.enabled = false;
+            }
+        }
+    }
 
     protected virtual void calm()
     {
@@ -133,4 +171,19 @@ public class BossDemon : Enemy
             }
         }
     }
+
+protected override void Start()
+{
+    base.Start();  // Call the base class Start() if needed
+
+    GameObject playerObject = GameObject.Find("PLAYER");
+    if (playerObject != null)
+    {
+        Player = playerObject;
+    }
+    else
+    {
+        Debug.LogError("PLAYER not found in the scene!");
+    }
+}
 }
