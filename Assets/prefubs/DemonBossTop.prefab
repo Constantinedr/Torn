@@ -53,7 +53,7 @@ MonoBehaviour:
   hitpoint: 5
   maxHitpoint: 5
   pushRecoverSpeed: 0.1
-  immuneTime: 0.3
+  immuneTime: 0.5
   ySpeed: 0.4
   xSpeed: 0.4
   xpValue: 1

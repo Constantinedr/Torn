@@ -276,7 +276,7 @@ MonoBehaviour:
   hitpoint: 15
   maxHitpoint: 30
   pushRecoverSpeed: 0.1
-  immuneTime: 0.2
+  immuneTime: 0.5
   ySpeed: 0.2
   xSpeed: 0.2
   xpValue: 1
@@ -323,7 +323,7 @@ MonoBehaviour:
   topHalfPrefab: {fileID: 1574883940980016465, guid: fb1142aeec7171741b2bf05ce2bcab53, type: 3}
   Player: {fileID: 0}
   bottomHalfPrefab: {fileID: 1720674537419131692, guid: 68244ef40e9b5c44e9d929f9c84f5c05, type: 3}
-  splitDuration: 5
+  dashDuration: 0.5
   dashSpeed: 1
   dashCooldown: 5
   spawners: []

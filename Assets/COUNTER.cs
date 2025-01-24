@@ -7,16 +7,27 @@ public class COUNTER : MonoBehaviour
 {   
     public GameObject targetObject; 
     public TextMeshProUGUI scoreText;
-
+    public bool check = false;
     private void Update(){
+    if (targetObject == null){
+          
+           targetObject = GameObject.Find("BOSS");
 
+        }
+    if (targetObject != null && !check){
+        StartCoroutine(CheckTargetDestroyed());
+        check = true;
+    }
+        if (targetObject == null && check){
 
+        check = false;
+    }
     }
         private IEnumerator CheckTargetDestroyed()
     {
         while (targetObject != null)
         {
-            yield return null;  // Wait until the next frame
+            yield return null; 
         }
 
 
@@ -24,10 +35,7 @@ public class COUNTER : MonoBehaviour
     }
     void Awake()
     {
-        targetObject = GameObject.Find("Demon_boss");
-        if (targetObject != null){
-            StartCoroutine(CheckTargetDestroyed());
-        }
+        check = false;
         DontDestroyOnLoad(gameObject);
 
         GameObject textObject = GameObject.Find("difficulty");
