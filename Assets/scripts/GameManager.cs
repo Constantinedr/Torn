@@ -103,7 +103,8 @@ public class GameManager : MonoBehaviour
     public List<Sprite> weaponSprites;
     public List<int> weaponPrices;
     public List<int> xpTable;
-    public float score;
+    public int score;
+    public float teleportCount=0;
     public FloatingTextManager floatingTextManager;
 
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)

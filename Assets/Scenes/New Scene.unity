@@ -3774,6 +3774,7 @@ MonoBehaviour:
   weaponPrices: 0a0000000f0000001400000019000000
   xpTable: 0a000000140000001e00000028000000320000003c000000
   score: 0
+  teleportCount: 0
   floatingTextManager: {fileID: 1510100192}
 --- !u!4 &278492900
 Transform:
@@ -4368,6 +4369,18 @@ MonoBehaviour:
       - m_Target: {fileID: 407640870}
         m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
         m_MethodName: ResetAllIcons
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LeaderboardCreatorDemo.LeaderboardManager, Assembly-CSharp
+        m_MethodName: UploadEntry
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

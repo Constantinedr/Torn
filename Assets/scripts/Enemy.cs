@@ -10,7 +10,7 @@ public class Enemy : Mover
     public Transform firePoint;
 
 
-    public float scoreValue = 10;
+    public int scoreValue = 10;
     public float triggerLength = 1f;
     public float chaseLength = 5f;
 
