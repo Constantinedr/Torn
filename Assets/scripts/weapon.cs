@@ -101,15 +101,13 @@ public class Weapon : Collidable
     private void Swing()
     {
         anim.SetTrigger("Swing");
-        WeaponSwing.Play();
-        // Enable the collider and sprite during the swing
 
 
     }
         private void SwingHeavy()
     {
         anim.SetTrigger("Heavy");
-        WeaponSwing.Play();
+
         // Enable the collider and sprite during the swing
 
 

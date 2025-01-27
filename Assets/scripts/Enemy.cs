@@ -22,6 +22,7 @@ public class Enemy : Mover
     public bool chasing;
     public bool collidingWithPlayer;
     public Transform playerTransform;
+    private float staggerDuration = 0.5f;
     public Vector3 startingPosition;
 
     public ContactFilter2D filter;
@@ -152,4 +153,32 @@ public class Enemy : Mover
             1.0f
         );
     }
+        private IEnumerator StaggerEffect()
+    {
+        
+       
+        xSpeed = 0;
+        ySpeed = 0;
+        yield return new WaitForSeconds(staggerDuration);
+        xSpeed = defaultXSpeed;
+        ySpeed = defaultYSpeed;
+
+    }
+    protected override void ReceiveDamage(Damage dmg)
+        {
+            if (Time.time - LastImmune > immuneTime)
+            {
+                LastImmune = Time.time;
+                hitpoint -= dmg.damageAmount;
+                pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
+                anim.SetTrigger("Stagger");
+                StartCoroutine(StaggerEffect());
+                GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.white, transform.position,Vector3.up*10, 0.5f);
+
+                if (hitpoint <=0){
+                    hitpoint = 0;
+                    Death ();
+                }
+        }
+}    
 }
