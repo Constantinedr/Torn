@@ -15,6 +15,7 @@ namespace LeaderboardCreatorDemo
 
         private void Start()
         {
+            DontDestroyOnLoad(gameObject);
             LoadEntries();
         }
 

@@ -4,7 +4,7 @@ public class Portal : Collidable
 {
     public string[] sceneNames;
     public string[] sceneNames2;
-    private bool canTeleport = true;  
+    private bool canTeleport = true;  // Flag to prevent rapid teleportation after a certain number of uses
 
     private const int maxTeleports = 6;  // Maximum number of teleports before switching scenes
 
@@ -13,7 +13,6 @@ public class Portal : Collidable
         if (canTeleport){
             if (coll.name == "PLAYER" )
             {
-                canTeleport = false; 
                 Teleport();
             }
         }
@@ -21,8 +20,7 @@ public class Portal : Collidable
 
     public void Teleport()
     {
-        Debug.Log("AGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
-        );
+      
         GameManager.instance.teleportCount++;
 
         if (GameManager.instance.teleportCount >= maxTeleports)

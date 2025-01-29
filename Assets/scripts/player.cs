@@ -23,6 +23,7 @@ public class Player : Mover
     public float damageMultiplier = 0;
     public bool HellHoundFuryBool = false;
     private float dashTime;
+
     private float cooldownTime;
     private bool isDashing;
     private Vector2 dashDirection;
