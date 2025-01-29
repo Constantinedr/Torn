@@ -1,7 +1,5 @@
 using UnityEngine;
 using TMPro;
-
-// NOTE: Make sure to include the following namespace wherever you want to access Leaderboard Creator methods
 using Dan.Main;
 
 namespace LeaderboardCreatorDemo
@@ -9,39 +7,55 @@ namespace LeaderboardCreatorDemo
     public class LeaderboardManager : MonoBehaviour
     {
         [SerializeField] private TMP_Text[] _entryTextObjects;
-        [SerializeField] private TMP_InputField _usernameInputField; 
-        public int Score;
+        [SerializeField] private TMP_InputField _usernameInputField;
+        private const string LEADERBOARD_PUBLIC_KEY = "d5a45051562f80592eea8adc1e2ab3e5012e9b628f98f62482ce9716d7d44033 "; // Replace with actual key
+
+        private static LeaderboardManager instance;
+
+        private void Awake()
+        {
+
+        }
 
         private void Start()
         {
-            DontDestroyOnLoad(gameObject);
             LoadEntries();
         }
 
         private void LoadEntries()
         {
+            if (_entryTextObjects == null || _entryTextObjects.Length == 0)
+            {
+                Debug.LogError("Entry Text Objects are not assigned!");
+                return;
+            }
 
-        
-            Leaderboards.TornLeaderBoard.GetEntries(entries =>
+            LeaderboardCreator.GetLeaderboard(LEADERBOARD_PUBLIC_KEY, entries =>
             {
                 foreach (var t in _entryTextObjects)
                     t.text = "";
 
-                var length = Mathf.Min(_entryTextObjects.Length, entries.Length);
+                int length = Mathf.Min(_entryTextObjects.Length, entries.Length);
                 for (int i = 0; i < length; i++)
                     _entryTextObjects[i].text = $"{entries[i].Rank}. {entries[i].Username} - {entries[i].Score}";
             });
         }
-        
+
         public void UploadEntry()
         {
-           
-            Score = GameManager.instance.score;
+            int score = Random.Range(1, 100); 
 
-            Leaderboards.TornLeaderBoard.UploadNewEntry(_usernameInputField.text, Score, isSuccessful =>
+            LeaderboardCreator.UploadNewEntry(LEADERBOARD_PUBLIC_KEY, _usernameInputField.text, score, success =>
             {
-                if (isSuccessful)
+                if (success)
+                {
+                    Debug.Log("Entry uploaded successfully!");
                     LoadEntries();
+                }
+                else
+                {
+                    Debug.LogError("Failed to upload leaderboard entry.");
+                }
             });
         }
     }
