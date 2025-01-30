@@ -22,7 +22,7 @@ public class boonCollect : Collectable
             {
                 boonOptionsManager.reAssign();  // Shuffle the boons
             }
-            animator.SetTrigger("Show");
+            animator.SetTrigger("ShowBOON");
 
             Destroy(gameObject);
         }

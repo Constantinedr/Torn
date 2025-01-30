@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "MAIN")
+        {
+            teleportCount = 0;
+            Debug.Log("Scene MAIN loaded, teleportCount reset to 0.");
+        }
         TeleportToSpawn();
     }
 
