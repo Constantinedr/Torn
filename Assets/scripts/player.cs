@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using LeaderboardCreatorDemo;
 public class Player : Mover
 {
     public int level;
+    public GameObject LeaderboardManager2;
     private bool IsMoving;
     private bool DefyDeathBool = false;
     private int HellHoundFuryBoolBuff = 0;
@@ -390,6 +391,7 @@ public class Player : Mover
     {
         DefyDeathBool = true;
     }
+
     protected override void Death(){
         if (DefyDeathBool){
             DefyDeathBool = false;
@@ -416,6 +418,13 @@ public class Player : Mover
                 hitpoint = maxHitpoint;
                 heartManager?.InitializeHearts(maxHitpoint);
                 heartManager?.UpdateHearts(hitpoint);
+                Freeze();
+                LeaderboardManager2 leaderboardManager = LeaderboardManager2.GetComponent<LeaderboardManager2>();
+
+                    if (leaderboardManager != null)
+                    {
+                        leaderboardManager.UploadEntry();
+                    }
                 GameManager.instance.deathMenuAnim.SetTrigger("Show");
         }
     }

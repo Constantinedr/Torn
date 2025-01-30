@@ -6,7 +6,7 @@ using Dan.Main;
 
 namespace LeaderboardCreatorDemo
 {
-    public class LeaderboardManager : MonoBehaviour
+    public class LeaderboardManager2 : MonoBehaviour
     {
         [SerializeField] private TMP_Text[] _entryTextObjects;
         [SerializeField] private TMP_Text _usernameInputField;
@@ -15,6 +15,7 @@ namespace LeaderboardCreatorDemo
 
         private void Start()
         {
+            DontDestroyOnLoad(gameObject);
             LoadEntries();
         }
 
@@ -33,10 +34,13 @@ namespace LeaderboardCreatorDemo
                     _entryTextObjects[i].text = $"{entries[i].Rank}. {entries[i].Username} - {entries[i].Score}";
             });
         }
-        
+        public void Update(){
+            Score = gameManager.score;
+        }
+
         public void UploadEntry()
         {
-            Score = gameManager.score;
+           
             Leaderboards.TutorialLeaderboard.UploadNewEntry(_usernameInputField.text, Score, isSuccessful =>
             {
                 if (isSuccessful)

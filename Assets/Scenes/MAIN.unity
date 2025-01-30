@@ -711,6 +711,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  shopUI: {fileID: 0}
 --- !u!1 &867684749
 GameObject:
   m_ObjectHideFlags: 0
