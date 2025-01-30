@@ -19,7 +19,10 @@ public class pause : MonoBehaviour
             }
         }
     }
+    public void close(){
 
+     Application.Quit();
+    }
     void PauseGame()
     {
         pauseMenuUI.SetActive(true); // Show menu
@@ -27,7 +30,7 @@ public class pause : MonoBehaviour
         isPaused = true;
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         pauseMenuUI.SetActive(false); // Hide menu
         Time.timeScale = 1f; // Resume time
