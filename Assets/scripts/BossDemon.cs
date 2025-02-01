@@ -42,7 +42,7 @@ public class BossDemon : Enemy
                 frenzy();
                 frenzyTriggered = true;
             }
-            if (!splitTriggered && hitpoint <= maxHitpoint * 0.1f && hitpoint > 0)
+            if (!splitTriggered && hitpoint <= maxHitpoint * 0.1f)
             {
                 Split();
                 splitTriggered = true;

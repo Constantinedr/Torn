@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Persistent player data
-    public int pesos;
+    public float pesos;
     public int experience;
     public Animator deathMenuAnim;
     public int PlayerLevel=1;

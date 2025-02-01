@@ -1108,9 +1108,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: menu, Assembly-CSharp
-        m_MethodName: UpdateWeaponPrices
+      - m_Target: {fileID: 1947760157}
+        m_TargetAssemblyTypeName: ShopUi, Assembly-CSharp
+        m_MethodName: Boon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4306,7 +4306,7 @@ GameObject:
   - component: {fileID: 256434838}
   - component: {fileID: 256434837}
   m_Layer: 5
-  m_Name: BackgroundExit
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4638,48 +4638,12 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Show
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 899761846}
-        m_TargetAssemblyTypeName: menu, Assembly-CSharp
-        m_MethodName: UpdateMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: show1
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 899761846}
         m_TargetAssemblyTypeName: menu, Assembly-CSharp
         m_MethodName: UpdateGoldAndExperience
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 32972573}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Freeze
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1202926513}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
-        m_MethodName: Freeze
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4764,13 +4728,14 @@ MonoBehaviour:
   nextLevelXP: 0
   playerSprites: []
   weaponSprites:
+  - {fileID: -760124964, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   - {fileID: -1111563459, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   - {fileID: 1625827935, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   - {fileID: -14238188, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   - {fileID: -760124964, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   weaponPrices: 0a0000000f0000001400000019000000
   xpTable: 0a000000140000001e00000028000000320000003c000000
-  score: 1000
+  score: 0
   teleportCount: 0
   floatingTextManager: {fileID: 1510100192}
 --- !u!4 &278492900
@@ -7229,8 +7194,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281315544
+  m_fontColor: {r: 0.8470589, g: 0.6901961, b: 0.18431373, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19147,7 +19112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14150941, g: 0.010012457, b: 0.010012457, a: 0.4627451}
+  m_Color: {r: 0.14150941, g: 0.010012457, b: 0.010012457, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19485,6 +19450,10 @@ MonoBehaviour:
   XpTableText: {fileID: 1935127381}
   WeaponPricesText: {fileID: 998424280}
   levelText: {fileID: 198472541}
+  textDisplay: {fileID: 998424282}
+  sourceObject: {fileID: 1202926512}
+  targetImage: {fileID: 1617960548}
+  dmg: 0
 --- !u!225 &899761847
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -20131,7 +20100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21266,14 +21235,14 @@ RectTransform:
   m_GameObject: {fileID: 1118287840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 5, y: 4, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1837836058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 16, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1118287842
@@ -21296,7 +21265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1111563459, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  m_Sprite: {fileID: 1097627085, guid: 182ab78d698bb3442909c4607421cfc4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21653,6 +21622,11 @@ MonoBehaviour:
     maxNormalAngle: 0
   damagePoint: 1
   pushForce: 2
+  weaponSprites:
+  - {fileID: 1625827935, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  - {fileID: -14238188, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  - {fileID: -417647504, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  - {fileID: 1548235792, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   weaponLevel: 1
   cooldown: 0
 --- !u!82 &1202926514
@@ -21667,7 +21641,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4511d5c31d0cf7549a89fca6a03fdd0e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -21804,7 +21778,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003653869, y: 0.038903326}
+  m_Offset: {x: 0.003653869, y: -0.008236639}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.47716388, y: 0.49999923}
@@ -21815,7 +21789,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.38780606}
+  m_Size: {x: 0.16, y: 0.2935261}
   m_EdgeRadius: 0
 --- !u!212 &1202926517
 SpriteRenderer:
@@ -22204,7 +22178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4528302, g: 0.18155928, b: 0.18155928, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23759,7 +23733,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Hide
+            m_StringArgument: DESTROY
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 601372107}
@@ -23801,7 +23775,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Hide
+            m_StringArgument: DESTROY
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 601372107}
@@ -23843,7 +23817,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Hide
+            m_StringArgument: DESTROY
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 601372107}
@@ -23885,7 +23859,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Hide
+            m_StringArgument: DESTROY
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 601372107}
@@ -23939,7 +23913,7 @@ Animator:
   m_GameObject: {fileID: 1558470387}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c1485c276fc81994196eaaf286f6772a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6cffaa4ea043e624889b364d730b846f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -25578,9 +25552,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: menu, Assembly-CSharp
-        m_MethodName: UpdateWeaponPrices
+      - m_Target: {fileID: 1947760157}
+        m_TargetAssemblyTypeName: ShopUi, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25789,7 +25763,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1111563459, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  m_Sprite: {fileID: 1625827935, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26105,6 +26079,10 @@ MonoBehaviour:
   XpTableText: {fileID: 0}
   WeaponPricesText: {fileID: 0}
   levelText: {fileID: 0}
+  textDisplay: {fileID: 0}
+  sourceObject: {fileID: 0}
+  targetImage: {fileID: 0}
+  dmg: 0
 --- !u!114 &1786499887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26150,7 +26128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
+  m_sendNavigationEvents: 0
   m_DragThreshold: 10
 --- !u!4 &1786499890
 Transform:
@@ -27397,7 +27375,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  weaponSprites:
+  - {fileID: 1625827935, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  - {fileID: -14238188, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  - {fileID: -417647504, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  - {fileID: 1548235792, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+  boonOptions: {fileID: 1558470387}
   GoldText: {fileID: 1014610848}
+  requiredGoldText: {fileID: 652505399}
+  weapon: {fileID: 1202926512}
+  weaponImage: {fileID: 1756359065}
+  requiredGold: 10
 --- !u!225 &1947760158
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -27701,19 +27689,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1964678032}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 899761846}
-        m_TargetAssemblyTypeName: menu, Assembly-CSharp
-        m_MethodName: UpdateWeaponPrices
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &1964678034
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -61988,7 +61964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.6, y: 1.6}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061155112
@@ -62011,7 +61987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -62020,8 +61996,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281977847
+  m_fontColor: {r: 0.9686275, g: 0.7960785, b: 0.22352943, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

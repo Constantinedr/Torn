@@ -23,7 +23,7 @@ public class pause : MonoBehaviour
 
      Application.Quit();
     }
-    void PauseGame()
+    public void PauseGame()
     {
         pauseMenuUI.SetActive(true); // Show menu
         Time.timeScale = 0f; // Freeze time

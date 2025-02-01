@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro; // Required for TextMeshProUGUI
-
+using UnityEngine.UI;
 public class menu : MonoBehaviour
 {
     public GameManager gameManager;
-    public int gold;
+    public float gold;
     public int experience;
     public float score;
     public List<int> MenuXpTable;
@@ -31,7 +31,7 @@ public class menu : MonoBehaviour
         if (gameManager != null)
         {
             UpdateGoldAndExperience();
-            UpdateWeaponPrices();
+
         }
         else
         {
@@ -49,7 +49,7 @@ public class menu : MonoBehaviour
             gold = gameManager.pesos;
             experience = gameManager.experience;
             score = gameManager.score;
-
+            UpdateWeapon();
             UpdateGoldText();
             UpdateExperienceText();
             UpdateScoreText();
@@ -162,4 +162,32 @@ public class menu : MonoBehaviour
             }
         }
     }
+    [SerializeField] private TextMeshProUGUI textDisplay;
+    [SerializeField] private GameObject sourceObject;
+    [SerializeField] private Image targetImage; // UI Image component
+    private Weapon weaponScript; 
+    public int dmg;
+    public void UpdateWeapon(){
+        
+        weaponScript = sourceObject.GetComponent<Weapon>();
+        dmg = weaponScript.damagePoint;
+        UpdateUI(dmg);
+    }
+    private void UpdateUI(float dmg)
+    {
+        // Update TMP text
+        if (textDisplay != null)
+        {
+            textDisplay.text = dmg.ToString("F2"); // Format to 2 decimal places
+        }
+
+
+        SpriteRenderer sourceSpriteRenderer = sourceObject.GetComponent<SpriteRenderer>();
+
+        if (sourceSpriteRenderer != null && targetImage != null)
+        {
+            targetImage.sprite = sourceSpriteRenderer.sprite;
+        }
+    }
 }
+

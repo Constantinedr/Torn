@@ -7,6 +7,9 @@ public class Weapon : Collidable
     private AudioSource WeaponSwing;
     public int damagePoint = 1;
     public float pushForce = 2.0f;
+    public List<Sprite> weaponSprites;
+    private int currentSpriteIndex = 0;
+
 
     public int weaponLevel = 1;
     private SpriteRenderer spriteRenderer;
@@ -16,7 +19,12 @@ public class Weapon : Collidable
     public float cooldown = 0.2f;
     private float lastSwing;
     private Animator anim;
-
+    public void NextSprite()
+    {
+        damagePoint += 1;
+        currentSpriteIndex = (currentSpriteIndex + 1) % weaponSprites.Count;
+        spriteRenderer.sprite = weaponSprites[currentSpriteIndex];
+    }
 
         public void Freeze()
     {
