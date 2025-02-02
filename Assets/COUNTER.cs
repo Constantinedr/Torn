@@ -5,6 +5,7 @@ using TMPro;
 
 public class COUNTER : MonoBehaviour
 {   
+    public int currentScore;
     public GameObject targetObject; 
     public TextMeshProUGUI scoreText;
     public bool check = false;
@@ -57,7 +58,7 @@ public class COUNTER : MonoBehaviour
     {
         if (scoreText != null)
         {
-            int currentScore;
+            
             if (int.TryParse(scoreText.text, out currentScore))
             {
                 currentScore++;  // Increment the score

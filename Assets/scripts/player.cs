@@ -5,6 +5,7 @@ using LeaderboardCreatorDemo;
 public class Player : Mover
 {
     public int level;
+    private int Regen=0;
     public GameObject LeaderboardManager2;
     private bool IsMoving;
     private bool DefyDeathBool = false;
@@ -71,7 +72,8 @@ public class Player : Mover
     }
 
     protected override void Start()
-    {
+    {   
+        hitpoint+=Regen;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>(); // Ensure this is correct
         hitpoint = maxHitpoint;
@@ -391,7 +393,14 @@ public class Player : Mover
     {
         DefyDeathBool = true;
     }
-
+    public void Regeneration(){
+        Regen+=1;
+    }
+    public void Regenw(){
+        if (hitpoint<maxHitpoint){
+            hitpoint+=Regen;
+        }
+    }
     protected override void Death(){
         if (DefyDeathBool){
             DefyDeathBool = false;
@@ -399,6 +408,7 @@ public class Player : Mover
             GameManager.instance.ShowText("RESSURECT!", 25, Color.yellow, transform.position, Vector3.up * 40, 1f);
         }
         else{
+                Regen = 0;
                 isAlive = false;
                 HellhoundActive=0;
                 damageMultiplier = 0;

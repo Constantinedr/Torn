@@ -58,6 +58,11 @@ public class BoonManager : MonoBehaviour
         Player playerScript = player.GetComponent<Player>();
         playerScript.HellHoundFury();
     }
+    public void Regeneration(){
+        Player playerScript = player.GetComponent<Player>();
+        playerScript.Regeneration();
+
+    }
     public void SpeedDemon()
     {
         Player playerScript = player.GetComponent<Player>();

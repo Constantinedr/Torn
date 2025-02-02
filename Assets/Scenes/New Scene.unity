@@ -21469,7 +21469,7 @@ GameObject:
   - component: {fileID: 1193327060}
   - component: {fileID: 1193327064}
   m_Layer: 5
-  m_Name: DIFFICULTY COUNTER
+  m_Name: COUNTER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21570,6 +21570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ae3116d23d4a34180452e8d50d6789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScore: 0
   targetObject: {fileID: 0}
   scoreText: {fileID: 0}
   check: 0
@@ -23844,9 +23845,9 @@ MonoBehaviour:
             m_StringArgument: Hide
             m_BoolArgument: 0
           m_CallState: 2
-  - icon: {fileID: 119131183, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
-    title: Hellbound Fury
-    description: Deal bonus damage when your health is critically low.
+  - icon: {fileID: -1053583956, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+    title: Regeneration
+    description: Regenarate 1 hp after each encounter
     buttonAction:
       m_PersistentCalls:
         m_Calls:
@@ -23864,7 +23865,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 601372107}
           m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
-          m_MethodName: HellHoundFury
+          m_MethodName: Regeneration
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -23879,7 +23880,91 @@ MonoBehaviour:
           m_MethodName: OnButtonPressed
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: -472639824, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+            m_ObjectArgument: {fileID: -1053583956, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+  - icon: {fileID: -1053583956, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+    title: Regeneration
+    description: Regenarate 1 hp after each encounter
+    buttonAction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1558470390}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: DESTROY
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 601372107}
+          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
+          m_MethodName: Regeneration
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 407640870}
+          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+          m_MethodName: OnButtonPressed
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: -1053583956, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+  - icon: {fileID: 1957840228, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
+    title: Defy Death
+    description: Restores you back to life.
+    buttonAction:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1558470390}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: DESTROY
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 601372107}
+          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
+          m_MethodName: DefyDeath
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hide
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 407640870}
+          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+          m_MethodName: OnButtonPressed
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1957840228, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0

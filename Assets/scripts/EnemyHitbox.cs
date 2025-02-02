@@ -6,6 +6,33 @@ public class EnemyHitbox : Collidable
 {
    public int damage;
    public float pushForce;
+    private int difficulty;
+
+    protected override void Start()
+    {
+        GameObject difficultyCounter = GameObject.Find("COUNTER");
+        if (difficultyCounter != null)
+        {
+            COUNTER counterScript = difficultyCounter.GetComponent<COUNTER>();
+            if (counterScript != null && counterScript.scoreText != null)
+            {
+                if (int.TryParse(counterScript.scoreText.text, out difficulty))
+                {
+                    difficulty = Mathf.Max(difficulty, 1); // Ensure difficulty is at least 1
+                }
+                else
+                {
+                    difficulty = 1;
+                }
+            }
+        }
+        else
+        {
+            difficulty = 1;
+        }
+        base.Start();
+        damage *= difficulty; 
+    }
 
     protected override void OnCollide(Collider2D coll){
         if (coll.tag == "FIGHTER" && coll.name == "PLAYER"){

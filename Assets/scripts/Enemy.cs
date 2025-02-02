@@ -28,11 +28,34 @@ public class Enemy : Mover
     public ContactFilter2D filter;
     public BoxCollider2D hitbox;
     public Collider2D[] hits = new Collider2D[10];
-
+    public int difficulty;
+    private GameObject difficultyCounter;
     protected Animator anim; // Made protected for inheritance
+    private int buff;
 
     protected override void Start()
     {
+
+        difficultyCounter = GameObject.Find("COUNTER");
+        if (difficultyCounter != null)
+        {
+            COUNTER counterScript = difficultyCounter.GetComponent<COUNTER>();
+            if (counterScript != null && counterScript.scoreText != null)
+            {
+                if (int.TryParse(counterScript.scoreText.text, out difficulty))
+                {
+                    difficulty = Mathf.Max(difficulty, 1); // Ensure difficulty is at least 1
+                }
+                else
+                {
+                    difficulty = 1;
+                }
+            }
+        }
+        else
+        {
+            difficulty = 1;
+        }
         base.Start();
         playerTransform = GameManager.instance.player.transform;
         startingPosition = transform.position;
@@ -47,6 +70,10 @@ public class Enemy : Mover
         {
             Debug.LogError($"Animator is missing on {gameObject.name}. Please attach one.");
         }
+            buff = Mathf.RoundToInt(maxHitpoint * difficulty * 0.5f); // Ensures integer value
+            maxHitpoint += buff;
+            hitpoint = maxHitpoint;
+
     }
 
     private void FixedUpdate()

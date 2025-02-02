@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
         if (spawn != null && player != null)
         {
             player.transform.position = spawn.transform.position;
+            Player playerScript = player.GetComponent<Player>();
+            playerScript.Regenw();
             Debug.Log($"Player teleported to SPAWN at {spawn.transform.position}.");
         }
         else

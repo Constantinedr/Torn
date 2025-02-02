@@ -50,6 +50,6 @@ MonoBehaviour:
   - {fileID: 1074363322665963877, guid: f77d668c5ca603341a94090b5485a05c, type: 3}
   - {fileID: 705131037214076278, guid: 33c2b4f0197e0954eb77578cfe0bce3e, type: 3}
   - {fileID: 8246986075215208735, guid: 5efb5a3cf555ab4439d1ec0e5b796537, type: 3}
-  - {fileID: 1688782407338852763, guid: 9e7a52e2799ef394e88a1c8ef5a7d3e9, type: 3}
   ENEMYPREFAB: {fileID: 8246986075215208735, guid: 5efb5a3cf555ab4439d1ec0e5b796537, type: 3}
   ENEMYPREFAB2: {fileID: 1074363322665963877, guid: f77d668c5ca603341a94090b5485a05c, type: 3}
+  rotationSpeed: 50
