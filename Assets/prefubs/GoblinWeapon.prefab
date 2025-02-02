@@ -356,7 +356,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6741627928752759585}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -541,8 +541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9e24200677a8d4b9a244e2ef0fb49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 4
-  maxHitpoint: 4
+  hitpoint: 2
+  maxHitpoint: 2
   pushRecoverSpeed: 0.2
   immuneTime: 0.5
   ySpeed: 0.175
@@ -588,6 +588,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  difficulty: 0
 --- !u!95 &3997801396953949791
 Animator:
   serializedVersion: 5

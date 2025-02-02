@@ -1,21 +1,26 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossDemon : Enemy
 {
-    public GameObject topHalfPrefab;  // Assign in Inspector
+    public GameObject topHalfPrefab;
     public GameObject Player;
-    public GameObject bottomHalfPrefab; // Assign in Inspector
+    public GameObject bottomHalfPrefab;
     public float dashDuration = 0.5f;
-    public float dashSpeed = 1f; // Speed of the dash
-    public float dashCooldown = 10f; // Cooldown between dashes
-    private bool canDash = true; // To control dash cooldown    
+    public float dashSpeed = 1f;
+    public float dashCooldown = 10f;
+    private bool canDash = true;
     private GameObject topHalfInstance;
     private GameObject bottomHalfInstance;
-    public SPAWNER[] spawners; // Array to hold references to the spawners
-    private bool frenzyTriggered = false; // Ensure Frenzy triggers only once
-    private bool calmTriggered = false;   // Ensure Calm triggers only once
+    public SPAWNER[] spawners;
+    private bool frenzyTriggered = false;
+    private bool calmTriggered = false;
     private bool splitTriggered = false;
+    public float healthPercentage=100;
     private bool halvesDestroyed = false;
+
+    // **Health Bar Reference**
+    public Image healthBarFill; // Assign in Inspector
 
     // Override the animation state method
     protected override void SetAnimationState(bool isWalking)
@@ -35,6 +40,8 @@ public class BossDemon : Enemy
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
 
             GameManager.instance.ShowText(dmg.damageAmount.ToString(), 25, Color.red, transform.position, Vector3.up * 40, 1f);
+
+            UpdateHealthBar();
 
             // Trigger Frenzy at 50% health
             if (!frenzyTriggered && hitpoint <= maxHitpoint * 0.5f && hitpoint > 0)
@@ -56,15 +63,22 @@ public class BossDemon : Enemy
         }
     }
 
+private void UpdateHealthBar()
+{
+    if (healthBarFill != null)
+    {
+        healthPercentage = (float)hitpoint / maxHitpoint;
+        healthBarFill.fillAmount = healthPercentage;
+    }
+}
+
     private void Update()
     {
-        // Randomly trigger dash if possible
-        if (Random.Range(0, 100) < 2)  // 2% chance per frame to dash
+        if (Random.Range(0, 100) < 2)
         {
             ChompChompDash();
         }
 
-        // Check if both halves are destroyed to destroy the main boss
         if (splitTriggered)
         {
             Destroy(gameObject);
@@ -84,20 +98,11 @@ public class BossDemon : Enemy
 
             if (player != null)
             {
-                // Calculate the dash direction
                 Vector2 dashDirection = (player.transform.position - transform.position).normalized;
-
-                // Dash movement
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
                 rb.velocity = dashDirection * dashSpeed;
-
-                // Disable dashing ability until cooldown is complete
                 canDash = false;
-
-                // Stop the dash after the duration
                 Invoke(nameof(StopDash), dashDuration);
-
-                // Reset dash ability after cooldown
                 Invoke(nameof(ResetDash), dashCooldown);
             }
         }
@@ -105,7 +110,6 @@ public class BossDemon : Enemy
 
     private void StopDash()
     {
-        // Stop the boss's movement by setting velocity to zero
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
@@ -122,21 +126,18 @@ public class BossDemon : Enemy
 
     protected virtual void Split()
     {
-        // Disable the boss's sprite and colliders instead of destroying it
         DisableBoss();
 
-        // Instantiate top and bottom halves
         topHalfInstance = Instantiate(topHalfPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
         bottomHalfInstance = Instantiate(bottomHalfPrefab, transform.position + Vector3.down * 0.5f, Quaternion.identity);
 
-        // Apply movement to the halves (e.g., moving in opposite directions)
         topHalfInstance.GetComponent<Rigidbody2D>().velocity = Vector2.up * 2f;
         bottomHalfInstance.GetComponent<Rigidbody2D>().velocity = Vector2.down * 2f;
     }
 
     private void DisableBoss()
     {
-         Destroy(gameObject);
+        Destroy(gameObject);
         GetComponent<SpriteRenderer>().enabled = false;
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null)
@@ -144,7 +145,6 @@ public class BossDemon : Enemy
             collider.enabled = false;
         }
 
-        // Disable sprite renderers and colliders of all children
         foreach (Transform child in transform)
         {
             SpriteRenderer childSprite = child.GetComponent<SpriteRenderer>();
@@ -172,18 +172,20 @@ public class BossDemon : Enemy
         }
     }
 
-protected override void Start()
-{
-    base.Start();  // Call the base class Start() if needed
+    protected override void Start()
+    {
+        base.Start();
+        GameObject playerObject = GameObject.Find("PLAYER");
+        if (playerObject != null)
+        {
+            Player = playerObject;
+        }
+        else
+        {
+            Debug.LogError("PLAYER not found in the scene!");
+        }
 
-    GameObject playerObject = GameObject.Find("PLAYER");
-    if (playerObject != null)
-    {
-        Player = playerObject;
+        // **Initialize Health Bar**
+        UpdateHealthBar();
     }
-    else
-    {
-        Debug.LogError("PLAYER not found in the scene!");
-    }
-}
 }

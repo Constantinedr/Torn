@@ -40,7 +40,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5830382855626610087}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0016565211, y: 0.000559235}
+  m_Offset: {x: 0.00278572, y: 0.0066628084}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.09042654, y: 0.11735189}
+  m_Size: {x: 0.051471338, y: 0.060171112}
   m_EdgeRadius: 0
 --- !u!114 &1738101042351000246
 MonoBehaviour:
@@ -206,12 +206,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9e24200677a8d4b9a244e2ef0fb49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 5
-  maxHitpoint: 5
+  hitpoint: 3
+  maxHitpoint: 3
   pushRecoverSpeed: 0.1
   immuneTime: 0.5
-  ySpeed: 0.4
-  xSpeed: 0.4
+  ySpeed: 0.2
+  xSpeed: 0.1
   xpValue: 1
   goldValue: 1
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
@@ -253,6 +253,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  difficulty: 0
 --- !u!61 &5717517133191962771
 BoxCollider2D:
   m_ObjectHideFlags: 0

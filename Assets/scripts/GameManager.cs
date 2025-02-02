@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public static GameManager instance;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
 
     private void Awake()
     {
@@ -40,16 +42,43 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("MAIN");
     }
 
+    private IEnumerator FadeAudio(AudioSource fadeOutSource, AudioSource fadeInSource, float duration = 1.5f)
+    {
+        float timer = 0f;
+        float startVolume = fadeOutSource.volume;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            fadeOutSource.volume = Mathf.Lerp(startVolume, 0, timer / duration);
+            yield return null;
+        }
+
+        fadeOutSource.Stop();
+        fadeOutSource.volume = startVolume; // Reset volume for next time
+        fadeInSource.volume = 0;
+        fadeInSource.Play();
+
+        timer = 0;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            fadeInSource.volume = Mathf.Lerp(0, startVolume, timer / duration);
+            yield return null;
+        }
+    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    if (scene.name == "MAIN")
     {
-        if (scene.name == "MAIN")
-        {
-            teleportCount = 0;
-            Debug.Log("Scene MAIN loaded, teleportCount reset to 0.");
-        }
-        TeleportToSpawn();
+        teleportCount = 0;
+        StartCoroutine(FadeAudio(audioSource2, audioSource1));
+        Debug.Log("Scene MAIN loaded, teleportCount reset to 0.");
     }
+
+    TeleportToSpawn();
+}
 
     private void TeleportToSpawn()
     {

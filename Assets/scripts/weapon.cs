@@ -10,7 +10,7 @@ public class Weapon : Collidable
     public List<Sprite> weaponSprites;
     private int currentSpriteIndex = 0;
 
-
+    public AudioSource WeaponAudio;
     public int weaponLevel = 1;
     private SpriteRenderer spriteRenderer;
 
@@ -109,7 +109,7 @@ public class Weapon : Collidable
     private void Swing()
     {
         anim.SetTrigger("Swing");
-
+        WeaponAudio.Play();
 
     }
         private void SwingHeavy()

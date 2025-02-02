@@ -5,7 +5,9 @@ using LeaderboardCreatorDemo;
 public class Player : Mover
 {
     public int level;
+    private TrailRenderer trail;
     private int Regen=0;
+    public AudioSource sound;
     public GameObject LeaderboardManager2;
     private bool IsMoving;
     private bool DefyDeathBool = false;
@@ -73,6 +75,7 @@ public class Player : Mover
 
     protected override void Start()
     {   
+        trail = GetComponent<TrailRenderer>();
         hitpoint+=Regen;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>(); // Ensure this is correct
@@ -230,24 +233,35 @@ public class Player : Mover
         }
     }
 
-    private void StartDash()
+private void StartDash()
+{
+    isDashing = true;
+    dashTime = Time.time + dashDuration;
+    cooldownTime = Time.time + dashCooldown;
+    sound.Play();
+
+    if (trail != null)
     {
-        isDashing = true;
-        dashTime = Time.time + dashDuration;
-        cooldownTime = Time.time + dashCooldown;
+        trail.emitting = true; // Enable the trail during dash
     }
+}
 
-    private void PerformDash()
+private void PerformDash()
+{
+    rb.velocity = dashDirection * dashSpeed;
+
+    if (Time.time >= dashTime)
     {
-        rb.velocity = dashDirection * dashSpeed;
+        isDashing = false;
+        rb.velocity = Vector2.zero; // Stop movement after dash
 
-        if (Time.time >= dashTime)
+        if (trail != null)
         {
-            isDashing = false;
-
-            rb.velocity = new Vector2(0f, 0f); // Stop movement after dash
+            trail.emitting = false; // Disable the trail after dash
         }
     }
+}
+
 
     private void HandleMovement()
     {
