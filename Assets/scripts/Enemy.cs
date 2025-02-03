@@ -35,7 +35,7 @@ public class Enemy : Mover
     private GameObject difficultyCounter;
     protected Animator anim; // Made protected for inheritance
     private int buff;
-    private IEnumerator FlashWhite()
+    public IEnumerator FlashWhite()
 {
     if (spriteRenderer != null)
     {
@@ -225,7 +225,7 @@ public class Enemy : Mover
                 }
         }
     }    
-    private void SpawnDamageParticles(Vector3 hitPosition, Vector3 attackOrigin)
+    public void SpawnDamageParticles(Vector3 hitPosition, Vector3 attackOrigin)
     {
         // Calculate direction from attack origin to hit position
         Vector3 attackDirection = (hitPosition - attackOrigin).normalized;

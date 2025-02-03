@@ -43,6 +43,8 @@ public class BossDemon : Enemy
     {
         if (Time.time - LastImmune > immuneTime)
         {
+            SpawnDamageParticles(dmg.origin, dmg.origin - (transform.position - dmg.origin).normalized);
+            StartCoroutine(FlashWhite());
             LastImmune = Time.time;
             hitpoint -= dmg.damageAmount;
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
