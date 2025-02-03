@@ -454,6 +454,7 @@ private void PerformDash()
         }
         else{
                 Regen = 0;
+                Invoke(nameof(PauseGame), 1f);
                 isAlive = false;
                 HellhoundActive=0;
                 damageMultiplier = 0;
@@ -483,7 +484,12 @@ private void PerformDash()
                 GameManager.instance.deathMenuAnim.SetTrigger("Show");
         }
     }
-    
+    private void PauseGame()
+    {
+
+        Time.timeScale = 0f; // Freeze time
+
+    }
 
 }
 
