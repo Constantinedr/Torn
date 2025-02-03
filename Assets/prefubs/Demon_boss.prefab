@@ -616,7 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab79b0718f01d1c49a300f496ccda1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 15
+  hitpoint: 30
   maxHitpoint: 30
   pushRecoverSpeed: 0.1
   immuneTime: 0.5
@@ -624,6 +624,7 @@ MonoBehaviour:
   xSpeed: 0.2
   xpValue: 1
   goldValue: 1
+  damageParticles: {fileID: 8860193265754876583, guid: 971ab59e8f12675488790d72fbe5a1f7, type: 3}
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 3639161282952133549}
   scoreValue: 10
@@ -668,14 +669,17 @@ MonoBehaviour:
   Player: {fileID: 0}
   bottomHalfPrefab: {fileID: 1720674537419131692, guid: 68244ef40e9b5c44e9d929f9c84f5c05, type: 3}
   dashDuration: 0.5
-  dashSpeed: 1
-  dashCooldown: 5
+  dashSpeed: 2
+  warningParticlePrefab: {fileID: 1105405796198601350, guid: e790881ad7d3f2849872028a936d3fb2, type: 3}
+  warningPrefab: {fileID: 0}
+  dashCooldown: 3
   spawners:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   healthPercentage: 100
+  hitboxForDah: {fileID: 8349716772109883531}
   healthBarFill: {fileID: 7562064419429338771}
 --- !u!50 &2160604456936151703
 Rigidbody2D:

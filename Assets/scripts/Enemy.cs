@@ -6,7 +6,10 @@ public class Enemy : Mover
 {
     public int xpValue = 1;
     public int goldValue;
+    [SerializeField] private ParticleSystem damageParticles;
+    private ParticleSystem damageParticlesInstance;
     public GameObject coinPrefab;
+    private SpriteRenderer spriteRenderer;
     public Transform firePoint;
 
 
@@ -32,10 +35,21 @@ public class Enemy : Mover
     private GameObject difficultyCounter;
     protected Animator anim; // Made protected for inheritance
     private int buff;
+    private IEnumerator FlashWhite()
+{
+    if (spriteRenderer != null)
+    {
+        spriteRenderer.color = Color.white; // Change to white
+        yield return new WaitForSeconds(0.1f); // Wait briefly
+        spriteRenderer.color = Color.red; // Slight red tint to indicate damage
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white; // Back to normal
+    }
+}
 
     protected override void Start()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         difficultyCounter = GameObject.Find("COUNTER");
         if (difficultyCounter != null)
         {
@@ -195,6 +209,9 @@ public class Enemy : Mover
         {
             if (Time.time - LastImmune > immuneTime)
             {
+                
+                SpawnDamageParticles(dmg.origin, dmg.origin - (transform.position - dmg.origin).normalized);
+                StartCoroutine(FlashWhite());
                 LastImmune = Time.time;
                 hitpoint -= dmg.damageAmount;
                 pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
@@ -207,5 +224,26 @@ public class Enemy : Mover
                     Death ();
                 }
         }
-}    
+    }    
+    private void SpawnDamageParticles(Vector3 hitPosition, Vector3 attackOrigin)
+    {
+        // Calculate direction from attack origin to hit position
+        Vector3 attackDirection = (hitPosition - attackOrigin).normalized;
+
+        // Ensure attackDirection is valid
+        if (attackDirection == Vector3.zero)
+            attackDirection = Vector3.right; // Default to right if the direction is somehow (0,0)
+
+        // Offset the position slightly behind the enemy
+        Vector3 spawnPosition = hitPosition - (attackDirection * -0.3f); // Adjust '0.3f' for desired distance
+
+        // Convert direction to rotation
+        float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        // Instantiate particles with adjusted position & rotation
+        Instantiate(damageParticles, spawnPosition, rotation);
+    }
+
+
 }

@@ -7,12 +7,12 @@ public class enemyWeapon : Collidable
     public int damagePoint = 1;
     public float pushForce = 2.0f;
     public GameObject character; // Reference to the character with the Freeze component
-    private BoxCollider2D weaponCollider;
+    protected BoxCollider2D weaponCollider;
     public float cooldown = 0.5f;
-    private float lastSwing;
-    private Animator anim;
+    protected float lastSwing;
+    protected Animator anim;
 
-    private goblinRampager goblin; // Reference to the goblinRampager
+    protected goblinRampager goblin; // Reference to the goblinRampager
 
     protected override void Start()
     {
@@ -33,7 +33,7 @@ public class enemyWeapon : Collidable
         base.Update();
     }
 
-    private void Swing()
+    protected virtual void Swing()
     {
         if (anim != null)
         {

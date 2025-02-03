@@ -52,10 +52,11 @@ MonoBehaviour:
   maxHitpoint: 2
   pushRecoverSpeed: 0.1
   immuneTime: 0.5
-  ySpeed: 0.7
-  xSpeed: 0.7
+  ySpeed: 0.5
+  xSpeed: 0.5
   xpValue: 1
   goldValue: 1
+  damageParticles: {fileID: 8860193265754876583, guid: 971ab59e8f12675488790d72fbe5a1f7, type: 3}
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 4477292947906865907}
   scoreValue: 10

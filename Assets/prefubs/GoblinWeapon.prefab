@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4785854295915696763}
   - component: {fileID: 5346349910031919085}
   - component: {fileID: 68941418756323750}
-  - component: {fileID: 7691106900442392067}
+  - component: {fileID: 1998119653509569784}
   m_Layer: 0
   m_Name: knife
   m_TagString: Untagged
@@ -153,7 +153,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7691106900442392067
+--- !u!114 &1998119653509569784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2153123991126774802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b732377d2c461794b9c9a584a636f159, type: 3}
+  m_Script: {fileID: 11500000, guid: c01749ef2df57044a946fd954acaae3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   filter:
@@ -182,7 +182,7 @@ MonoBehaviour:
   damagePoint: 1
   pushForce: 2
   character: {fileID: 2153123991126774802}
-  cooldown: 0.5
+  cooldown: 2
 --- !u!1 &2953383967798814537
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +549,7 @@ MonoBehaviour:
   xSpeed: 0.2
   xpValue: 1
   goldValue: 1
+  damageParticles: {fileID: 8860193265754876583, guid: 971ab59e8f12675488790d72fbe5a1f7, type: 3}
   coinPrefab: {fileID: 4521600404596485944, guid: 90036eb7e1eea6d4fa7493d7d2ea373c, type: 3}
   firePoint: {fileID: 4664820848206412236}
   scoreValue: 10

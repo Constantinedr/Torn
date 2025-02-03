@@ -27,14 +27,45 @@ public class Player : Mover
     public float damageMultiplier = 0;
     public bool HellHoundFuryBool = false;
     private float dashTime;
+    public GameObject canvas;
 
     private float cooldownTime;
     private bool isDashing;
     private Vector2 dashDirection;
     private int HellhoundActive = 0;
     private Rigidbody2D rb;
+    public float shakeDuration = 0.2f; // Duration of the screen shake
+    public float shakeMagnitude = 0.08f; // Intensity of the screen shake
+
     
-    private int lastHitpoint; // Store previous HP for change detection
+    private int lastHitpoint;
+     private IEnumerator SlowDownTime()
+    {
+        canvas.SetActive(true);
+        Vector3 originalPosition = Camera.main.transform.position;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float x = Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = Random.Range(-1f, 1f) * shakeMagnitude;
+
+           
+            Camera.main.transform.position = new Vector3(originalPosition.x + x, originalPosition.y + y, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+
+           
+            yield return null;
+        }
+        Camera.main.transform.position = originalPosition;
+
+      
+            canvas.SetActive(false);
+        
+    }
+    
+
 
     public void DestroyObjcect()
     {
@@ -380,7 +411,7 @@ private void PerformDash()
             LastImmune = Time.time;
             hitpoint -= dmg.damageAmount;
             pushDirection = (transform.position - dmg.origin).normalized * dmg.pushForce;
-
+            StartCoroutine(SlowDownTime());
             if (hitpoint <= 0)
             {
                 hitpoint = 0;

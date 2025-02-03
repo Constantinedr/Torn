@@ -16,17 +16,7 @@ public class SPAWNER : MonoBehaviour
         spawnPosition = transform.position;
     }
 
-    void Update()
-    {
-        CircularMovement();
-    }
 
-    private void CircularMovement()
-    {
-        float radius = 0.8f; 
-        float angle = Time.time * rotationSpeed * Mathf.Deg2Rad;
-        transform.position = spawnPosition + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
-    }
 
     public void TriggerActivate()
     {

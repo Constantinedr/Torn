@@ -56,6 +56,7 @@ MonoBehaviour:
   xSpeed: 0.4
   xpValue: 4
   goldValue: 0
+  damageParticles: {fileID: 8860193265754876583, guid: 971ab59e8f12675488790d72fbe5a1f7, type: 3}
   coinPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   scoreValue: 10

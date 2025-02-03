@@ -102,10 +102,18 @@ public class demonShooter : Enemy
             if(CanShoot){
                 anim.SetTrigger("Shoot");
                 lastTimeFired = Time.time;
-                GameObject projectileThrow = Instantiate(projectile, firePoint.position, firePoint.rotation);
+                StartCoroutine(ShootAfterDelay(0.7f));
+                
               
             }
         }
     
     }
+    IEnumerator ShootAfterDelay(float delay)
+        {
+            
+            yield return new WaitForSeconds(delay);
+            GameObject projectileThrow = Instantiate(projectile, firePoint.position, firePoint.rotation);
+        }
+
 }

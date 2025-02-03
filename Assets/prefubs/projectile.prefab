@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   target: {fileID: 0}
-  speed: 1.15
+  speed: 1
   lifetime: 6
 --- !u!1 &5267770312930965621
 GameObject:
