@@ -1456,63 +1456,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1001 &127280209
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6068353159862331432, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_Name
-      value: DEMON
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8551327467384312636, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 12721f19c20b5c74da8cf75ef84611f5, type: 3}
 --- !u!1 &128949811
 GameObject:
   m_ObjectHideFlags: 0
@@ -26004,48 +25947,6 @@ MonoBehaviour:
             m_StringArgument: Hide
             m_BoolArgument: 1
           m_CallState: 2
-  - icon: {fileID: 970184198, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
-    title: Speed Demon
-    description: makes player faster
-    buttonAction:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1558470390}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: DESTROY
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 601372107}
-          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
-          m_MethodName: SpeedDemon
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Hide
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 407640870}
-          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
-          m_MethodName: OnButtonPressed
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 970184198, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Hide
-            m_BoolArgument: 0
-          m_CallState: 2
   - icon: {fileID: 119131183, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
     title: Hellbound Fury
     description: Deal bonus damage when your health is critically low.
@@ -26082,48 +25983,6 @@ MonoBehaviour:
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: -472639824, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Hide
-            m_BoolArgument: 0
-          m_CallState: 2
-  - icon: {fileID: -1053583956, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
-    title: Regeneration
-    description: Regenarate 1 hp after each encounter
-    buttonAction:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1558470390}
-          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-          m_MethodName: SetTrigger
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: DESTROY
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 601372107}
-          m_TargetAssemblyTypeName: BoonManager, Assembly-CSharp
-          m_MethodName: Regeneration
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Hide
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 407640870}
-          m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
-          m_MethodName: OnButtonPressed
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: -1053583956, guid: 41ec2ac8dda30f34fa6b61facdcf5e97, type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
@@ -64705,4 +64564,3 @@ SceneRoots:
   - {fileID: 1658233050}
   - {fileID: 602550917}
   - {fileID: 942824345}
-  - {fileID: 127280209}

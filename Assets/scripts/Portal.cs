@@ -6,7 +6,7 @@ public class Portal : Collidable
     public string[] sceneNames2;
     private bool canTeleport = true;  // Flag to prevent rapid teleportation after a certain number of uses
 
-    private const int maxTeleports = 6;  // Maximum number of teleports before switching scenes
+    private const int maxTeleports = 4;  // Maximum number of teleports before switching scenes
 
     protected override void OnCollide(Collider2D coll)
     {

@@ -41973,7 +41973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7442022504174261072, guid: cdc5d87dd8a47234eb16a6ca3d4fa1c0, type: 3}
       propertyPath: sceneNames.Array.data[0]
-      value: normal1
+      value: normal2
       objectReference: {fileID: 0}
     - target: {fileID: 7629806021996783447, guid: cdc5d87dd8a47234eb16a6ca3d4fa1c0, type: 3}
       propertyPath: m_Name

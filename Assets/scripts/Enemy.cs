@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : Mover
 {
     public int xpValue = 1;
+    public round roundScript;
     public int goldValue;
     [SerializeField] private ParticleSystem damageParticles;
     private ParticleSystem damageParticlesInstance;
@@ -35,6 +36,8 @@ public class Enemy : Mover
     private GameObject difficultyCounter;
     protected Animator anim; // Made protected for inheritance
     private int buff;
+    
+
     public IEnumerator FlashWhite()
 {
     if (spriteRenderer != null)
@@ -48,7 +51,8 @@ public class Enemy : Mover
 }
 
     protected override void Start()
-    {
+    {   
+        roundScript = FindObjectOfType<round>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         difficultyCounter = GameObject.Find("COUNTER");
         if (difficultyCounter != null)
@@ -178,7 +182,9 @@ public class Enemy : Mover
 
     protected override void Death()
     {
-        // Destroy enemy and grant experience to player
+        if (roundScript != null){
+            roundScript.EnemyDied();
+        }
         Destroy(gameObject);
         for(int i=0; i<=goldValue-1; i++){
         GameObject gold = Instantiate(coinPrefab, firePoint.position, firePoint.rotation);
@@ -236,14 +242,8 @@ public class Enemy : Mover
 
         // Offset the position slightly behind the enemy
         Vector3 spawnPosition = hitPosition - (attackDirection * -0.3f); // Adjust '0.3f' for desired distance
-
-        // Convert direction to rotation
         float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-        // Instantiate particles with adjusted position & rotation
         Instantiate(damageParticles, spawnPosition, rotation);
     }
-
-
 }
