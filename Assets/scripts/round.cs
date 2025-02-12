@@ -73,4 +73,8 @@ public class round : Collectable
             Debug.LogWarning("DESTROYwalls reference is not set!");
         }
     }
+
+    private void Start (){
+        OnCollect();
+    }
 }

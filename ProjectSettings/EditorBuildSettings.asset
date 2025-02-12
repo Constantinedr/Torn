@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/normal2.unity
     guid: 229458c742cc7fb4398c39eae69219d4
+  - enabled: 0
+    path: Assets/CrazySDK/Demo/_Start.unity
+    guid: 719c97d2bda674bff93b80c2bd0a0f7e
   m_configObjects: {}
